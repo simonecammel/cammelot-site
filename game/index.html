@@ -49,7 +49,7 @@
     <li><a href="#board">The board</a></li>
     <li><a href="#ghost">Ghost Cammelot</a></li>
     <li><a href="#ai-tools">AI tools in 60 towns</a></li>
-    <li><a href="#cases">The three cases</a></li>
+    <li><a href="#cases">The four cases</a></li>
     <li><a href="#where-the-numbers-come-from">Where the numbers come from</a></li>
   </ul>
 </nav>
@@ -64,13 +64,13 @@
       <dt>Ruud, head of care</dt>
       <dd>How many people waited too long for the hospital, for a first visit and for treatment, how many of them were urgent, the months they spent past the limit, the healthy years lost while waiting, and how tired the staff are.</dd>
       <dt>Yara, IT</dt>
-      <dd>The shared patient record, the outside suppliers linked into the town's computers, and the odds of a ransomware attack.</dd>
+      <dd>The record link, the outside suppliers linked into the town's computers, and the odds of a ransomware attack.</dd>
     </dl>
     <p id="limit">Waiting too long means past the Treeknorm. It is the longest wait the Dutch care sector agreed on: 4 weeks for a first hospital visit, 7 for treatment. It is an agreed goal, not a medical limit, and the Netherlands is looking at different limits by how urgent the care is (see <a href="../sources/#waits">Sources</a>). The game calls it the agreed limit. Its figures are counted over all 5,000 residents; you see about seventy of them in the streets, and the counts come from 5,000 made-up people with Dutch ages, illnesses and referral rates who use the same GPs, hospital and tools.</p>
-    <p>Once a season, from the first summer on, the board meets. Each advisor brings one item, they often want different things, and you pick what the board does. Between meetings you hire GPs, specialists, nurses, doctor's assistants and IT staff, build practices and rooms, and buy tools: an AI scribe, a shared patient record and, once the record is live, three AI agents (a triage agent, a scheduling agent and a care coordinator).</p>
+    <p>Once a season, from the first summer on, the board meets. Each advisor brings one item, they often want different things, and you pick what the board does. Between meetings you hire GPs, specialists, nurses, doctor's assistants and IT staff, build practices and rooms, and buy tools: an AI scribe, a record link between the GP and the hospital and, once it is live, three AI agents (a triage agent, a scheduling agent and a care coordinator).</p>
     <p>The game runs day by day. You can pause it, speed it up, or click any resident to see why they are waiting.</p>
   </div>
-  <figure class="shot side"><span class="frame"><img src="../img/seat-care.png" width="400" height="470" alt="Ruud's panel in case 1: people who waited too long for the hospital, split into a first visit (over 4 weeks) and treatment (over 7 weeks), urgent patients who waited too long, months past the limit, healthy years lost while waiting, the GP wait, weeks to clear the hospital list, residents you see past the limit now and how the staff are, each with Ghost Cammelot's figure beside it and marked better or worse." loading="lazy"></span><figcaption>Ruud's panel in case 1. The people who waited too long come first, counted over all 5,000 residents, and each figure has Ghost Cammelot's beside it.</figcaption></figure>
+  <figure class="shot side"><span class="frame"><img src="../img/seat-care.png" width="400" height="451" alt="Ruud's panel in case 1: people who waited too long for the hospital, split into a first visit (over 4 weeks) and treatment (over 7 weeks), urgent patients who waited too long, months past the limit, healthy years lost while waiting, the GP wait, weeks to clear the hospital list, residents you see past the limit now and how the staff are, each with Ghost Cammelot's figure beside it and marked better or worse." loading="lazy"></span><figcaption>Ruud's panel in case 1. The people who waited too long come first, counted over all 5,000 residents, and each figure has Ghost Cammelot's beside it.</figcaption></figure>
 </section>
 
 <section class="split" id="ghost">
@@ -100,7 +100,7 @@
   <p>The <a href="../lab/">lab</a> tests whether an agent reads a referral right. The game shows what happens to the town when it does: an agent that reads every letter right can still make waits longer if the hospital behind it can't treat people any faster.</p>
   </div>
 <figure class="chartfig side sticky">
-  <svg class="chart" id="chart-doneright" viewBox="0 0 440 188" role="img" aria-labelledby="chart-doneright-t"><title id="chart-doneright-t">People who waited longer than the agreed limit for the hospital in ten years, of 5,000 residents, mean of 60 simulated towns, per plan</title><g class="ghost"><text class="lbl" x="190" y="25" text-anchor="end">Nothing done</text><rect x="200" y="10" width="190" height="20"/><text class="val" x="398" y="26">12105</text></g><g class="bar"><text class="lbl" x="190" y="61" text-anchor="end">AI scribe only</text><rect x="200" y="46" width="190" height="20"/><text class="val" x="398" y="62">12124</text></g><g class="bar"><text class="lbl" x="190" y="97" text-anchor="end">Shared record only</text><rect x="200" y="82" width="96" height="20"/><text class="val" x="304" y="98">6109</text></g><g class="bar"><text class="lbl" x="190" y="133" text-anchor="end">Record + triage agent</text><rect x="200" y="118" width="113" height="20"/><text class="val" x="321" y="134">7230</text></g><g class="good"><text class="lbl" x="190" y="169" text-anchor="end">Record + scheduling agent</text><rect x="200" y="154" width="27" height="20"/><text class="val" x="235" y="170">1743</text></g></svg>
+  <svg class="chart" id="chart-doneright" viewBox="0 0 440 188" role="img" aria-labelledby="chart-doneright-t"><title id="chart-doneright-t">People who waited longer than the agreed limit for the hospital in ten years, of 5,000 residents, mean of 60 simulated towns, per plan</title><g class="ghost"><text class="lbl" x="190" y="25" text-anchor="end">Nothing done</text><rect x="200" y="10" width="190" height="20"/><text class="val" x="398" y="26">12105</text></g><g class="bar"><text class="lbl" x="190" y="61" text-anchor="end">AI scribe only</text><rect x="200" y="46" width="190" height="20"/><text class="val" x="398" y="62">12124</text></g><g class="bar"><text class="lbl" x="190" y="97" text-anchor="end">Record link only</text><rect x="200" y="82" width="96" height="20"/><text class="val" x="304" y="98">6109</text></g><g class="bar"><text class="lbl" x="190" y="133" text-anchor="end">Record + triage agent</text><rect x="200" y="118" width="113" height="20"/><text class="val" x="321" y="134">7230</text></g><g class="good"><text class="lbl" x="190" y="169" text-anchor="end">Record + scheduling agent</text><rect x="200" y="154" width="27" height="20"/><text class="val" x="235" y="170">1743</text></g></svg>
   <figcaption><a class="chip sim" href="#where-the-numbers-come-from">Simulated</a> People who waited longer than the agreed limit for the hospital in ten years, of all 5,000 residents, mean of 60 towns with the full waiting room. Grey: Ghost Cammelot's plan, nothing done.</figcaption>
 </figure>
 </section>
@@ -121,10 +121,10 @@
       </ul>
       <details>
         <summary>What the tests show</summary>
-        <p>A shorter line at the GP sends more people on to the hospital. In the test towns, one extra GP clears De Brink's line and rarely earns the hospital star. One extra specialist does the reverse. The scribe on its own shortens De Brink's line, but not enough for a star. A GP and a specialist together earn all three in most towns.</p>
+        <p>A shorter line at the GP sends more people on to the hospital. In the test towns, one extra GP clears De Brink's line and does not earn the hospital star. One extra specialist does the reverse. The scribe on its own shortens De Brink's line, but not enough for a star. A GP and a specialist together earn all three in most towns.</p>
       </details>
     </div>
-    <figure class="shot side"><span class="frame"><img src="../img/case-end.png" width="720" height="412" alt="The end card of case 1 after hiring a GP only. One line at the top says hospital treatment capacity held people back most. Under it, three tiles compare the town with Ghost Cammelot: the wait for the GP is 7.4 days shorter, 85 more people waited too long for the hospital, and there is €166k less money left." loading="lazy"></span><figcaption>The end card of case 1 after hiring a GP only: a shorter wait for the GP, but more people waited too long for the hospital than in Ghost Cammelot. Further down are the stars and a table that replays the town with one change at a time.</figcaption></figure>
+    <figure class="shot side"><span class="frame"><img src="../img/case-end.png" width="720" height="412" alt="The end card of case 1 after hiring a GP only. One line at the top says hospital treatment capacity held people back most. Under it, three tiles compare the town with Ghost Cammelot: the wait for the GP is days shorter, more people waited too long for the hospital, and there is less money left." loading="lazy"></span><figcaption>The end card of case 1 after hiring a GP only: a shorter wait for the GP, but more people waited too long for the hospital than in Ghost Cammelot. Further down are the stars and a table that replays the town with one change at a time.</figcaption></figure>
   </article>
 
   <article class="case">
