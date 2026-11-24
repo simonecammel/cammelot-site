@@ -37,7 +37,7 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-in">
     <div class="hero-text">
-      <p class="kicker">A game about running care in a made-up Dutch town</p>
+      <p class="kicker">A free browser game · about ten minutes a case</p>
       <!-- Headline chosen by the owner, 12 Nov 2026. -->
       <h1 id="hero-title">Everyone seems to know how to <em>do</em> AI in healthcare</h1>
       <p class="sub">In this game you find out for yourself. You are the board of a made-up Dutch GP practice and hospital. You hire staff and buy AI and IT one measure at a time, and compare your town with the same town where nothing changed.</p>
@@ -55,10 +55,11 @@
 <section class="prose why-first" id="why" aria-labelledby="why-title">
   <h2 id="why-title">Why I built this</h2>
   <p>Most of what I read about AI in healthcare is about one tool at one step. A scribe saves a GP minutes on notes, or a triage tool takes calls off the assistant. It rarely says what happens to the same patients at the next step.</p>
-  <p>The money is handed out the same way. From 2027 the Dutch care agreement AZWA pays €600 million through the insurers for six model plans, among them digital triage, voice-driven reporting and capacity planning. Each plan pays for one measure and is judged on that measure's own target, such as seconds saved per consult. None of them pays for redoing the whole path a patient takes.</p>
-  <p>Anyone who has worked on a slow process knows what that risks. If you speed up one step, the work piles up at the next one. A patient goes from the GP to a referral, to the hospital's list, to treatment, and a faster GP can make the hospital's line longer.</p>
-  <p>At the same time every new tool is more IT to depend on. In 2025 Z-CERT counted three ransomware incidents at Dutch care institutions and about ten successful attacks on their suppliers. In April 2026 an attack on the company whose record system most Dutch hospitals use led eleven hospitals to take portals or software offline, and referrals between GPs and hospitals were disrupted. Three companies hold almost all Dutch hospital record systems, and the competition authority ACM calls being locked in to one of them a central problem.</p>
-  <p>So a board that wants to change the whole path gets its money one measure at a time, and each measure adds a supplier it then depends on. I wanted to see what that does to a town.</p>
+  <p>The studies so far are modest about that one step too. In the largest one, across five US hospitals, clinicians with an AI scribe spent 16 minutes a day less on notes and saw half a patient more a week. Twelve Dutch GPs saved 43 seconds of writing per consult, and their consults did not get shorter.</p>
+  <p>The money is handed out the same way. From 2027 the Dutch care agreement AZWA puts €600 million, paid through the insurers, into six kinds of tool, among them digital triage, voice-driven reporting and capacity planning. A care provider applies for one of them and is paid on what that tool saves inside its own organisation, such as seconds per consult or hours of staff time. The plans do pay for training and for changing how the work is done. None of them is judged on whether the patient's whole path, from the GP to treatment in the hospital, gets shorter.</p>
+  <p>That matters because a patient goes from the GP to a referral, to the hospital's list, to treatment. Speeding up a step helps when that step is the slowest one. When it is not, the work piles up at the next step, and a faster GP can make the hospital's line longer. In the Netherlands the long wait is at the hospital: in 2025 just over half of the waits for a first outpatient visit were longer than the agreed four weeks.</p>
+  <p>Changing the whole path means the GP's and the hospital's systems have to work together, and that is more IT to depend on. Dutch care already leans on few suppliers: one company's record system runs in about three of every four hospitals, and in 2021 the competition authority ACM called being locked in to such a supplier a central problem. The attacks that hurt most now come in through suppliers. In 2025 Z-CERT counted three ransomware incidents at Dutch care institutions and about ten at their suppliers. In April 2026 ransomware at that record-system company led eleven hospitals to take their patient portals offline as a precaution, and the company later told its customers that patient data had been stolen.</p>
+  <p>So a board that wants to change the whole path gets its money one tool at a time, and each tool adds a supplier it then depends on. Putting those two together is my own reading; I found no report that does. I wanted to see what it does to a town.</p>
 </section>
 
 <section class="split" id="from-simulation" aria-labelledby="from-simulation-title">
@@ -82,16 +83,18 @@
     <li><strong>The software company.</strong> When does more software make care easier to knock out?</li>
     <li><strong>The review desk.</strong> When AI tools get cheap to make, where do they wait before they reach a patient?</li>
   </ol>
-  <p>For each question the computer plays the case in many simulated towns with a few fixed plans, next to the same towns where nobody does anything. That is how I know what a plan does on average and how often it goes the other way. You play one of those towns.</p>
+  <p>Every town has a twin, Ghost Cammelot: the same people, the same flu winters and the same attacks on the same days, where nobody hires or buys anything. A plan is judged against that twin. For each question the computer plays the case in many simulated towns with a few fixed plans. That is how I know what a plan does on average and how often it goes the other way. You play one of those towns.</p>
+  <p>The people follow Dutch figures for ages, illness, referrals and deaths. Most of the rest is mine: of the game's 255 settings, 14 come from a source, 10 are worked out from a real figure and 231 I picked for play, such as prices and what each tool does.</p>
   <p>What it showed so far:</p>
   <ul>
-    <li><strong>The scribe</strong> on its own shortens the wait for the GP and does nothing for the hospital list. The GPs see more people and send the extra ones on to the same hospital, so in case 1 that list gets longer.</li>
+    <li><strong>The scribe</strong> on its own shortens the wait for the GP and does nothing for the hospital list. The GPs see more people and send the extra ones on to the same hospital, so in case 1 that list gets longer. That the extra patients are referred as often as the others is my assumption.</li>
     <li><strong>The record link</strong> on its own cuts the waiting past the limit in most simulated towns, because referrals arrive with the GP's notes. A triage agent on top of it sends people on faster than the hospital can treat them.</li>
     <li><strong>The software company.</strong> Backups that are kept offline and tested keep an attack short in every simulated town. Every tool the board buys is one more supplier with a way in, and in some towns a second attack comes in through one of them.</li>
     <li><strong>The review desk</strong> is where I was wrong. I expected that a hospital which keeps its own copy of the patient data would get later tools working sooner, because each tool then needs less IT work. In a town this small it did not pay off: after three years the plan with the copy had less waiting in 3 of every 10 simulated towns, and in the other 7 it did not. It starts to pay off at about thirty small tools that only read data, and Cammelot Hospital buys about ten.</li>
   </ul>
   <p>If De Brink were a real practice, the scribe's own figure would not be the one I watched. Minutes saved on notes are not money saved. They count when they become consults, less overtime, or a GP who stays. So before paying for a second year I would want three numbers from a trial: how many more people the practice saw, how many more it referred, and what the hospital's list did in the same months.</p>
-  <p>All of this comes from the game's own assumptions. None of it is a measurement of a real practice or hospital. <a href="game/">How the model works</a> has the figures.</p>
+  <p>The game leaves things out. It has no bill for leaving a supplier, it does not say who is liable when a tool gets something wrong, and it is one town, so hospitals cannot work together. I argue above that those matter, and the game does not test them.</p>
+  <p>All of this comes from the game's own assumptions. None of it is a measurement of a real practice or hospital. <a href="game/">How the model works</a> has the figures and <a href="sources/">Sources</a> has the real ones.</p>
 </section>
 
 <section class="band" id="how-it-plays" aria-labelledby="how-it-plays-title">
