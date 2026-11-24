@@ -307,6 +307,29 @@ a.chip:hover { background: var(--panel-2); }
 .chart .t-calibrated rect, .chart rect.t-calibrated { fill: var(--teal); }
 .chart .t-illustrative rect, .chart rect.t-illustrative { fill: var(--ghost); }
 .chart.params { padding: 0.75rem; }
+/* the story's own pictures (home page, 24 Nov 2026): a patient's path, suppliers, case 1 against Ghost Cammelot */
+.chart .sub { font-size: 13px; fill: var(--ink-soft); }
+.chart.path .step rect { fill: var(--panel-2); stroke: var(--wood-dark); stroke-width: 2; }
+.chart.path .bad rect { fill: var(--bad); stroke: var(--wood-dark); stroke-width: 2; }
+.chart.path .bad text { fill: var(--bg); }
+.chart.path .arr { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+.chart.path .tool path { fill: none; stroke: var(--teal); stroke-width: 3; }
+.chart.path .tool text { font-size: 13.5px; fill: var(--ink); }
+.chart.diverge .axis { stroke: var(--ink-soft); stroke-width: 1.5; }
+.chart.diverge .whisk { stroke: var(--ink); stroke-width: 2; fill: none; }
+.chart.diverge .val { font-size: 21px; }
+.storyfig { margin: 1.5rem 0 1.75rem; overflow-x: auto; }
+/* on a phone these two keep a readable size and scroll sideways inside their own frame */
+.storyfig .chart.path, .storyfig .chart.diverge { min-width: 35rem; }
+.storyfig figcaption { max-width: var(--measure); padding-top: 0.5rem; }
+.stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; max-width: 44rem; margin: 1.25rem 0 0.5rem; padding: 0; list-style: none; }
+@media (min-width: 46rem) { .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.stats li { background: var(--panel); border: 3px solid var(--wood-dark); padding: 0.6rem 0.75rem 0.7rem; margin: 0; }
+.stats b { display: block; font: 400 2.6rem/0.95 var(--num); color: var(--ink); }
+.stats span { display: block; font-size: 0.95rem; color: var(--ink-soft); line-height: 1.3; margin-top: 0.25rem; }
+.tendots { display: inline-flex; gap: 5px; vertical-align: middle; margin-right: 0.5rem; }
+.tendots i { width: 14px; height: 14px; border: 2px solid var(--wood-dark); background: var(--panel-2); }
+.tendots i.on { background: var(--good); }
 .chart.params text { font-family: var(--display); font-size: 17px; }
 
 .diagram { margin: 0; }
