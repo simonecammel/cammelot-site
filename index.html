@@ -37,9 +37,10 @@
 <section class="hero" aria-labelledby="hero-title">
   <div class="hero-in">
     <div class="hero-text">
+      <p class="kicker">A game about running care in a made-up Dutch town</p>
       <!-- Headline chosen by the owner, 12 Nov 2026. -->
       <h1 id="hero-title">Everyone seems to know how to <em>do</em> AI in healthcare</h1>
-      <p class="sub">You are the board of a made-up Dutch GP practice and hospital. Bring in staff, AI and IT one measure at a time, then compare the result with the same town where nothing changed.</p>
+      <p class="sub">In this game you find out for yourself. You are the board of a made-up Dutch GP practice and hospital. You hire staff and buy AI and IT one measure at a time, and compare your town with the same town where nothing changed.</p>
       <p class="facts-line">Free · No account · Synthetic model · Not a forecast</p>
       <p class="cta"><a class="button big" href="minister/?case=scribe">Play case 1 (about 10 minutes)</a> <a class="button alt" href="game/">How the model works</a></p>
       <p class="maker">Made by Simone Cammel.</p>
@@ -54,21 +55,43 @@
 <section class="prose why-first" id="why" aria-labelledby="why-title">
   <h2 id="why-title">Why I built this</h2>
   <p>Most of what I read about AI in healthcare is about one tool at one step. A scribe saves a GP minutes on notes, or a triage tool takes calls off the assistant. It rarely says what happens to the same patients at the next step.</p>
-  <p>In the Netherlands the money is handed out the same way. The government funds one measure at a time, such as a triage tool, a planning tool or a scribe, and the AZWA programme pays for six such model plans from 2027. A patient goes through all of them, and a measure that speeds up one step can make the next line longer.</p>
-  <p>I work in Big Tech, so you can assume I lean towards AI. In the game an AI scribe on its own shortens the wait for the GP and does nothing for the hospital list, because the GPs see more people and send the extra ones on to the same hospital. In case 1 that list gets longer.</p>
-  <p>I expected one thing that the game did not show. I thought a hospital that keeps its own copy of the patient data would get later tools working sooner, because each tool then needs less IT work. Case 4 tests that. In a town this small it did not pay off: after three years the plan with the copy had less waiting in 3 of every 10 simulated towns, and in the other 7 it did not. It starts to pay off at about thirty small tools that only read data, and Cammelot Hospital buys about ten.</p>
-  <p>If De Brink were a real practice, the scribe's own figure would not be the one I watched. Minutes saved on notes are not money saved. They count when they become consults, less overtime, or a GP who stays. So before paying for a second year I would want three numbers from a trial: how many more people the practice saw, how many more it referred, and what the hospital's list did in the same months.</p>
-  <p>All of this comes from the game's own assumptions. None of it is a measurement of a real practice or hospital.</p>
+  <p>The money is handed out the same way. From 2027 the Dutch care agreement AZWA pays €600 million through the insurers for six model plans, among them digital triage, voice-driven reporting and capacity planning. Each plan pays for one measure and is judged on that measure's own target, such as seconds saved per consult. None of them pays for redoing the whole path a patient takes.</p>
+  <p>Anyone who has worked on a slow process knows what that risks. If you speed up one step, the work piles up at the next one. A patient goes from the GP to a referral, to the hospital's list, to treatment, and a faster GP can make the hospital's line longer.</p>
+  <p>At the same time every new tool is more IT to depend on. In 2025 Z-CERT counted three ransomware incidents at Dutch care institutions and about ten successful attacks on their suppliers. In April 2026 an attack on the company whose record system most Dutch hospitals use led eleven hospitals to take portals or software offline, and referrals between GPs and hospitals were disrupted. Three companies hold almost all Dutch hospital record systems, and the competition authority ACM calls being locked in to one of them a central problem.</p>
+  <p>So a board that wants to change the whole path gets its money one measure at a time, and each measure adds a supplier it then depends on. I wanted to see what that does to a town.</p>
 </section>
 
 <section class="split" id="from-simulation" aria-labelledby="from-simulation-title">
   <div class="split-text">
-    <h2 id="from-simulation-title">From a simulation to a game</h2>
-    <p>Cammelot started as a simulation: 45 residents, three GPs and a hospital, with a switch between the care system as it is and one rebuilt around AI. Flip the switch and the waiting lists shrank.</p>
+    <h2 id="from-simulation-title">Why a game</h2>
+    <p>Online everyone seems to be the next hospital CEO or CIO. In a post the decisions look easy, and nobody has to carry them out.</p>
+    <p>Cammelot started as a simulation you could only watch: 45 residents, three GPs and a hospital, with a switch between the care system as it is and one rebuilt around AI. Flip the switch and the waiting lists shrank.</p>
     <p>The reaction I got most was: fine, but how do we get there? Nobody rebuilds a care system in one go. Someone decides what to buy first, from this year's budget, while the hospital list keeps growing, and each choice changes what the next one can do.</p>
-    <p>So I turned it into a game where you make those choices yourself.</p>
+    <p>So now you steer the town. You are the board, you make the decisions that look easy in a post, and the game shows what they do to the people waiting.</p>
   </div>
   <figure class="shot side"><span class="frame"><img src="img/first-sim.png" width="800" height="470.5" alt="The first Cammelot: a pixel-art town map with named residents, a hospital and three GP practices, a bar along the top with a switch between IST and SOLL, and a resident's dossier on the right." loading="lazy"></span><figcaption>The first version, with a switch between today's care (IST) and an AI-native version (SOLL). Its settings, such as 30% of GP time on paperwork, were my assumptions, and some of its figures I could not confirm later.</figcaption></figure>
+</section>
+
+<section class="prose" id="tests" aria-labelledby="tests-title">
+  <h2 id="tests-title">What the game tests</h2>
+  <p>I work in Big Tech, so you can assume I lean towards AI. The game is a model built on my assumptions. It can compare choices in one made-up town, and it cannot predict a real one.</p>
+  <p>Each of the four cases puts one question to the town:</p>
+  <ol>
+    <li><strong>The scribe.</strong> What happens when AI speeds up the GP but not the hospital?</li>
+    <li><strong>The record link.</strong> Can AI work before the GP and the hospital can read each other's records?</li>
+    <li><strong>The software company.</strong> When does more software make care easier to knock out?</li>
+    <li><strong>The review desk.</strong> When AI tools get cheap to make, where do they wait before they reach a patient?</li>
+  </ol>
+  <p>For each question the computer plays the case in many simulated towns with a few fixed plans, next to the same towns where nobody does anything. That is how I know what a plan does on average and how often it goes the other way. You play one of those towns.</p>
+  <p>What it showed so far:</p>
+  <ul>
+    <li><strong>The scribe</strong> on its own shortens the wait for the GP and does nothing for the hospital list. The GPs see more people and send the extra ones on to the same hospital, so in case 1 that list gets longer.</li>
+    <li><strong>The record link</strong> on its own cuts the waiting past the limit in most simulated towns, because referrals arrive with the GP's notes. A triage agent on top of it sends people on faster than the hospital can treat them.</li>
+    <li><strong>The software company.</strong> Backups that are kept offline and tested keep an attack short in every simulated town. Every tool the board buys is one more supplier with a way in, and in some towns a second attack comes in through one of them.</li>
+    <li><strong>The review desk</strong> is where I was wrong. I expected that a hospital which keeps its own copy of the patient data would get later tools working sooner, because each tool then needs less IT work. In a town this small it did not pay off: after three years the plan with the copy had less waiting in 3 of every 10 simulated towns, and in the other 7 it did not. It starts to pay off at about thirty small tools that only read data, and Cammelot Hospital buys about ten.</li>
+  </ul>
+  <p>If De Brink were a real practice, the scribe's own figure would not be the one I watched. Minutes saved on notes are not money saved. They count when they become consults, less overtime, or a GP who stays. So before paying for a second year I would want three numbers from a trial: how many more people the practice saw, how many more it referred, and what the hospital's list did in the same months.</p>
+  <p>All of this comes from the game's own assumptions. None of it is a measurement of a real practice or hospital. <a href="game/">How the model works</a> has the figures.</p>
 </section>
 
 <section class="band" id="how-it-plays" aria-labelledby="how-it-plays-title">
