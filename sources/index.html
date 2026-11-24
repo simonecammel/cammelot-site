@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Sources and data · Cammelot</title>
+<meta name="description" content="The Dutch care figures behind Cammelot, each with its source and a link, and the figures I no longer use.">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="canonical" href="https://cammelot.org/sources/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cammelot">
+<meta property="og:title" content="Sources and data · Cammelot">
+<meta property="og:description" content="The Dutch care figures behind Cammelot, each with its source and a link, and the figures I no longer use.">
+<meta property="og:url" content="https://cammelot.org/sources/">
+<meta property="og:image" content="https://cammelot.org/img/og-sources.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sources and data · Cammelot: a pixel-art picture of Cammelot with the page title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sources and data · Cammelot">
+<meta name="twitter:description" content="The Dutch care figures behind Cammelot, each with its source and a link, and the figures I no longer use.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body class="page-sources">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../"><svg class="logo" viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#3f2615" d="M5 1h6v1H5zM4 2h1v2H4zM11 2h1v2h-1zM1 4h14v1H1zM0 5h1v8H0zM15 5h1v8h-1zM1 13h14v1H1z"/><path fill="#b5523b" d="M1 5h14v8H1z"/><path fill="#d9744f" d="M1 5h14v1H1z"/><path fill="#fff8e6" d="M5 6h6v6H5z"/><path fill="#3f9a52" d="M7 7h2v4H7zM6 8h4v2H6z"/></svg><span>Cammelot</span></a>
+    <nav aria-label="Main"><ul><li><a class="button play" href="../minister/">Play</a></li><li><a href="../game/">How the model works</a></li><li><a href="../lab/">Experiments</a></li><li><a href="../about/">About</a></li></ul></nav>
+  </div>
+</header>
+<main id="main">
+<section class="prose">
+  <h1>Sources and data</h1>
+  <p class="lead">These are the real figures behind Cammelot, with where each one comes from. The game applies them to a town of 5,000 people, of whom you see about seventy, and the rest of its numbers (prices, how much time the hospital has, what the tools do) are picked for play. The <a href="../game/#where-the-numbers-come-from">game page</a> says how the two fit together.</p>
+  <p>Each source below was opened and the figure found in it, unless the line says it was read in someone else's summary. The project's full evidence register also lists the claims I could not check.</p>
+</section>
+<nav class="toc" aria-label="On this page">
+  <ul>
+    <li><a href="#waits">Waiting times</a></li>
+    <li><a href="#gp">GP care</a></li>
+    <li><a href="#people">Population and deaths</a></li>
+    <li><a href="#money">Money</a></li>
+    <li><a href="#scribes">AI scribes</a></li>
+    <li><a href="#ransomware">Ransomware</a></li>
+    <li><a href="#retired">Figures I no longer use</a></li>
+  </ul>
+</nav>
+<section class="prose">
+
+  <h2 id="waits">Waiting times</h2>
+  <ul class="sources">
+    <li>The Treeknorm, the longest wait the Dutch care sector agreed on: 4 weeks for an outpatient visit or diagnostics, 7 weeks for treatment. It is an agreed goal for non-urgent care, not a medical limit. The game calls it the agreed limit, and counts the people who wait longer than it.
+      <span class="src">NZa, <a href="https://zoek.officielebekendmakingen.nl/blg-829546.pdf">Wachttijdprojecten: hoe staan we ervoor?</a>, filed as a parliamentary annex (copy of the NZa text), about 2018.</span></li>
+    <li>The insurers' wording: treatment at the outpatient clinic at most 6 weeks, treatment with a hospital stay at most 7. The NZa's own regulation has one 7-week norm for treatment. The game uses 4 weeks for a first visit and 7 for treatment.
+      <span class="src">Univé, <a href="https://www.unive.nl/zorgverzekering/zorghulp/treeknormen">Treeknormen</a>, read 3 November 2026.</span></li>
+    <li>The Netherlands is looking at different norms by medical urgency: in early-2024 agreements hospitals, insurers, the ministry and others said they would explore differentiated Treeknorms, and the minister wants stronger triage by urgency. The game counts urgent patients who waited too long separately for that reason.
+      <span class="src">Answers to parliamentary questions (Dijk, Agema), <a href="https://berthub.eu/tkconv/getraw/2024D39825">2024D39825</a>, 21 October 2024.</span></li>
+    <li>In 2025 the average wait for an outpatient visit was 42 days (34 in 2022), and just over half of outpatient waits were longer than the 4-week norm.
+      <span class="src">ANP analysis of NZa waiting-time data, <a href="https://www.hartvannederland.nl/milieu-gezondheid/zorg/artikelen/meer-dan-helft-poliklinieken-te-lange-wachttijd">Hart van Nederland</a>, 2 March 2026 (a press summary).</span></li>
+  </ul>
+
+  <h2 id="gp">GP care</h2>
+  <ul class="sources">
+    <li>In a 2023 survey of 2,296 GPs, two in three said paperwork takes at least one working day a week. The most common answer was 21 to 30% of their time. These are the GPs' own estimates, not a time study.
+      <span class="src">LHV, <a href="https://www.lhv.nl/wp-content/uploads/2023/09/Infographic-Uitkomsten-Peiling-administratieve-verplichtingen-augustus-2023.pdf">Uitkomsten peiling administratieve verplichtingen</a>, August 2023.</span></li>
+    <li>4,490 GP contacts per 1,000 registered people in 2025, rising with age to 11,639 for people over 85.
+      <span class="src">Nivel, <a href="https://www.nivel.nl/sites/default/files/bestanden/13438.pdf">Zorg door de huisarts: jaarcijfers 2025</a>, July 2026.</span></li>
+    <li>323 referrals to a medical specialist per 1,000 registered people in 2025. By my arithmetic that is about 7 referrals per 100 GP contacts.
+      <span class="src">Nivel, same report.</span></li>
+    <li>How many people their own GP knows to have each of 14 chronic conditions, by age. For people over 80: high blood pressure 607 per 1,000, diabetes 234, heart failure 132, dementia 92.
+      <span class="src">CBS StatLine <a href="https://opendata.cbs.nl/ODataApi/odata/86055NED">86055NED</a>, from Nivel's GP records, 2024.</span></li>
+  </ul>
+
+  <h2 id="people">Population and deaths</h2>
+  <ul class="sources">
+    <li>18,130,208 people lived in the Netherlands on 1 January 2026; 21.1% were 65 or older.
+      <span class="src">CBS StatLine <a href="https://opendata.cbs.nl/ODataApi/odata/7461bev">7461bev</a>.</span></li>
+    <li>In the municipality of Sluis 30.4% were 65 or older. All three cases draw their residents' ages from Sluis, an older town than the country as a whole.
+      <span class="src">CBS StatLine <a href="https://opendata.cbs.nl/ODataApi/odata/03759ned">03759ned</a>.</span></li>
+    <li>The chance of dying within a year at each age, 2025: 1.4% at 70, 4.2% at 80, 14.8% at 90. Life expectancy at birth 82.1 years.
+      <span class="src">CBS StatLine <a href="https://opendata.cbs.nl/ODataApi/odata/37360ned">37360ned</a>, life table 2025.</span></li>
+    <li>173,372 people died in the Netherlands in 2025, 57% of them aged 80 or over (provisional).
+      <span class="src">CBS, <a href="https://www.cbs.nl/en-gb/news/2026/11/173-thousand-deaths-in-2025">173 thousand deaths in 2025</a>, 12 March 2026.</span></li>
+    <li>Delayed cancer treatment: each 4 weeks of delay raised the risk of death by 6 to 8% for surgery. The game uses 6% for every 4 weeks someone waits past the Treeknorm, for everyone on the hospital list. Beyond curative cancer care that is my assumption. It gives the estimate of deaths linked to waiting, which the game page shows at 6%, at 8% and with no harm from waiting. The game itself leaves it out: in most starts it is under one death in ten years, and it shows healthy years lost while waiting instead.
+      <span class="src">Hanna et al., <a href="https://www.bmj.com/content/371/bmj.m4087.abstract">Mortality due to cancer treatment delay</a>, BMJ 2020 (abstract).</span></li>
+    <li>Health lost while waiting, per person: in a model of the English NHS, going from an 18-week to a 36-week wait cost 0.034 to 0.043 QALY for a coronary bypass and 0.193 to 0.291 for a hip replacement, over a lifetime (one QALY is a year in full health). The authors say the loss does not grow in a straight line. I read it as about 0.008 to 0.010 QALY per month of waiting for a heart operation and 0.047 to 0.070 for a hip, and the game uses 0.009 and 0.06, with other conditions placed in between by my own choice. That gives the game's healthy years lost while waiting; the game page shows it at the low and high ends too.
+      <span class="src">Gibbs et al., Medical Decision Making 2024, <a href="https://eprints.whiterose.ac.uk/id/eprint/213417/">repository copy</a> (read in that copy, a secondary reading of the published paper).</span></li>
+    <li>The RIVM counted the health lost by delayed operations in the Netherlands in 2020 and 2021 the same way: about 305,000 operations were put off, and 319,483 QALYs were not gained (between 150,973 and 488,195, depending on who went first). That is roughly one healthy year per delayed operation, by my division.
+      <span class="src">Oosterhoff et al., Social Science &amp; Medicine 320:115658, 2023, <a href="https://research.utwente.nl/en/publications/estimating-the-health-impact-of-delayed-elective-care-during-the-">University of Twente page</a>; RIVM, <a href="https://www.rivm.nl/corona/onderzoeken/uitgestelde-zorg">Uitgestelde zorg</a>.</span></li>
+  </ul>
+
+  <h2 id="money">Money</h2>
+  <ul class="sources">
+    <li>Dutch health spending was €120.2 billion in 2025 (provisional).
+      <span class="src">CBS, <a href="https://www.cbs.nl/nl-nl/nieuws/2026/26/uitgaven-gezondheidszorg-6-1-procent-hoger-in-2025">Uitgaven gezondheidszorg 6,1 procent hoger in 2025</a>, 25 June 2026.</span></li>
+    <li>AZWA breakthrough money (doorbraakmiddelen): €800 million over 2027 to 2029. €600 million goes through the insurers (Zvw), spread over six model plans and open to applications from 1 to 31 January 2027; €200 million goes through municipalities for the social domain. A care provider applies together with its insurer, the NZa decides (by the end of April 2027, about four months after applications close), and the insurer pays the provider per milestone. Only a regional GP organisation can apply for digital triage. In the game, GP and hospital care are paid by the insurers' yearly contracts.
+      <span class="src">Zorgakkoorden, <a href="https://www.zorgakkoorden.nl/programmas/aanvullend-zorg-en-welzijnsakkoord/doorbraakmiddelen/">Doorbraakmiddelen</a> and the <a href="https://www.zorgakkoorden.nl/programmas/aanvullend-zorg-en-welzijnsakkoord/qa-doorbraakmiddelen/">Q&amp;A</a>, read October 2026; VWS, <a href="https://berthub.eu/tkconv/getraw/2026D25422">letter on the doorbraakmiddelen</a>, 28 May 2026 (Kamerstuk 31 765 nr. 981).</span></li>
+    <li>For the capacity-planning model plan, 70% of the money pays for the work (the first 15% when the plan is approved, before anything is live) and 30% is paid at the end if the result KPIs are met, and at most 10% may go to data infrastructure. Its result target is at least 2% more productivity; the game's scheduling agent gives 30% more hospital treatments, far above that, so every game result that leans on the scheduling agent leans on a number of ours. The model plans for digital triage and voice-driven reporting keep the same 70/30 split (below), each with its own result rules; the game uses 70/30 for all three of its tools.
+      <span class="src">Zorgakkoorden Q&amp;A (3.4) and the capacity-planning model plan of 29 September 2026.</span></li>
+    <li>The model plan for voice-driven reporting pays its last 30% in steps: 10% of the money at half the target, 20% at three quarters, 30% at the full target. For GP care the target is time saved: about 30 seconds per consult, 22.5 hours per GP a year. In the game the AI scribe's last 30% comes in the same steps, but judged on patients per GP day. By the plan's own measure the game's scribe saves about 57 seconds a consult, so it would always pass; the money panel and the year report say so.
+      <span class="src">Zorgakkoorden, <a href="https://www.zorgakkoorden.nl/.wh/ea/uc/f6bdfc329010294aa120002d5300275662e2c1f92744b00/260930%20-%20Modelplan%20-%20Spraakgestuurd%20Rapporteren.pdf">model plan for voice-driven reporting</a> (30 September 2026), sections 3.2 and 4.1.2.</span></li>
+    <li>The model plan for digital triage pays a GP practice €10,000 (or €15,000 on its second route), 70% for the work (60% on the second route) and the rest only if the practice reaches its target: 8% of the assistants' and triagists' time saved (12% on the second route). A practice that misses it loses that part; there are no steps, and none of the money may go to data infrastructure. In the game the triage agent's last 30% needs 8% more people helped per GP day, all or nothing. The game's triage agent is much bigger than the plan's: it settles 40% of minor needs without a visit, against the plan's 8% of time saved; that number is mine. Its price follows the plan: €10,000 once for each GP practice it answers for (€30k in a town with three practices), then a licence of €300 a month a practice, which is mine.
+      <span class="src">Zorgakkoorden, <a href="https://www.zorgakkoorden.nl/.wh/ea/uc/f75f7172201026c11110048a9df02df34522a96549b2d00/5.%20260724%20-%20Modelplan%20-%20Digitale%20triage.pdf">model plan for digital triage</a> (27 July 2026), sections 3.1, 3.2 and 4.1.</span></li>
+    <li>Breakthrough money may not pay for anything another source already pays for (no double funding; if it turns out it did, the money goes back), and it pays no structural costs such as licences, not even in the first year.
+      <span class="src">Zorgakkoorden, <a href="https://www.zorgakkoorden.nl/.wh/ea/uc/fa9c642e101027811110048a9df02299162f0cc5a2a2800/260804%20-%20Modelplan%20-%20Spraakgestuurd%20Rapporteren2.pdf">model plan for voice-driven reporting</a> (4 August 2026), cover note and section 3.1.</span></li>
+    <li>The IZA transformation money (€2.8 billion) was fully committed by 12 September 2025.
+      <span class="src">Zorgakkoorden, <a href="https://www.zorgakkoorden.nl/programmas/integraal-zorgakkoord/iza-onderdelen/transformatieplannen/">Transformatieplannen</a>.</span></li>
+  </ul>
+
+  <h2 id="scribes">AI scribes</h2>
+  <ul class="sources">
+    <li>In 2025, 36% of Dutch GP practices used AI speech-driven reporting, up from 14% in 2024.
+      <span class="src">Nivel, <a href="https://www.nivel.nl/sites/default/files/bestanden/13491.pdf">Inzet en behoefte aan AI-ondersteunde digitale toepassingen onder huisartsenpraktijken, meting 2025</a>.</span></li>
+    <li>Dutch scribe suppliers go live in a quarter of an hour to a few weeks (Juvoly) or about 3 weeks (Autoscriber), linked to the practice's own GP system. Practices pay per user or per consult. GPs said the time saved did not turn into more consults a day. In the game the scribe works 21 days after it is bought, without the hospital's IT, and its licence of €250 per GP a month is mine.
+      <span class="src">Digizo.nu for the IZA steering group, <a href="https://www.lhv.nl/wp-content/uploads/2025/12/2.4-Bijlage-Eindrapport-Spraakgestuurd-rapporteren.pdf">Eindrapport spraakgestuurd rapporteren</a>, 1 December 2025.</span></li>
+    <li>A randomised trial with 66 doctors and 71,487 notes: about 22 minutes a day less on notes and less work exhaustion. The trial did not report how many patients were seen.
+      <span class="src">Afshar et al., <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12858090">A pragmatic randomized controlled trial of ambient artificial intelligence</a>, NEJM AI 2025.</span></li>
+    <li>A second randomised trial with 238 physicians: time per note fell 9.5% more than in the control group with one scribe, and not significantly with the other.
+      <span class="src">UCLA Health, <a href="https://www.uclahealth.org/news/release/ucla-study-finds-ai-scribes-may-reduce-documentation-time">press release on the NEJM AI paper</a>, 26 November 2025 (the paper itself was not read).</span></li>
+  </ul>
+
+  <h2 id="ransomware">Ransomware in care</h2>
+  <ul class="sources">
+    <li>In 2025, three ransomware incidents at Dutch care institutions were reported to Z-CERT, and about ten successful attacks on suppliers to Dutch care.
+      <span class="src">Z-CERT, <a href="https://english.z-cert.nl/assets/uploads/Actueel/Z-CERT_Cybersecuritybeeld-Zorg-2025.pdf">Cybersecuritybeeld Zorg 2025</a>.</span></li>
+    <li>Ireland's health service (2021): 80% of its IT encrypted, staff back on pen and paper, about four months to recover.
+      <span class="src">US HHS, <a href="https://www.hhs.gov/sites/default/files/lessons-learned-hse-attack.pdf">Lessons learned from the HSE cyber attack</a>, 2022.</span></li>
+    <li>Synnovis, a pathology supplier in London (2024): 10,152 outpatient appointments and 1,710 planned procedures postponed at two hospital trusts.
+      <span class="src">NHS England London, <a href="https://www.england.nhs.uk/london/2024/09/26/update-on-cyber-incident-clinical-impact-in-south-east-london-thursday-26-september-2024/">update of 26 September 2024</a>.</span></li>
+  </ul>
+  <p>The game's own ransomware odds are much higher than real ones, so that an attack happens within a game. They are marked as made up in the game.</p>
+
+  <h2 id="retired">Figures I no longer use</h2>
+  <p>An earlier version of this site quoted figures I could not confirm in a primary source: a shortage of 301,000 care workers by 2035, GPs working at 62% of their capacity, specialist waits of 12 weeks, and others. They are not used in the current game or on this site. Some may be right, but I could not check them.</p>
+
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <p><strong>Cammelot is a game and a synthetic experiment.</strong> The town, its people and its care group are invented. It is not a forecast and not medical advice.</p>
+    <p>Game code AGPL-3.0, lab code MIT, data and text CC BY 4.0. The code is not public yet. Pixel art in the game by LimeZu. <a href="../about/#credits">Credits and licences</a></p>
+    <p>Made by Simone Cammel. <a href="mailto:contact@cammelot.org">contact@cammelot.org</a> · <a href="../sources/">Sources</a> · <a href="../press/">Press kit</a></p>
+  </div>
+</footer>
+</body>
+</html>

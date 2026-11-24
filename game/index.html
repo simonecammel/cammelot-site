@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; base-uri 'none'; form-action 'none'">
+<title>How the model works · Cammelot</title>
+<meta name="description" content="How the Cammelot game works: you are the board of a care group with three advisors, three short cases and Ghost Cammelot as the yardstick. What the AI tools did in 60 simulated towns, and where the game's numbers come from.">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="canonical" href="https://cammelot.org/game/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cammelot">
+<meta property="og:title" content="How the model works · Cammelot">
+<meta property="og:description" content="How the Cammelot game works: you are the board of a care group with three advisors, three short cases and Ghost Cammelot as the yardstick. What the AI tools did in 60 simulated towns, and where the game's numbers come from.">
+<meta property="og:url" content="https://cammelot.org/game/">
+<meta property="og:image" content="https://cammelot.org/img/og-game.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How the model works · Cammelot: a pixel-art picture of Cammelot with the page title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How the model works · Cammelot">
+<meta name="twitter:description" content="How the Cammelot game works: you are the board of a care group with three advisors, three short cases and Ghost Cammelot as the yardstick. What the AI tools did in 60 simulated towns, and where the game's numbers come from.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body class="page-game">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../"><svg class="logo" viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#3f2615" d="M5 1h6v1H5zM4 2h1v2H4zM11 2h1v2h-1zM1 4h14v1H1zM0 5h1v8H0zM15 5h1v8h-1zM1 13h14v1H1z"/><path fill="#b5523b" d="M1 5h14v8H1z"/><path fill="#d9744f" d="M1 5h14v1H1z"/><path fill="#fff8e6" d="M5 6h6v6H5z"/><path fill="#3f9a52" d="M7 7h2v4H7zM6 8h4v2H6z"/></svg><span>Cammelot</span></a>
+    <nav aria-label="Main"><ul><li><a class="button play" href="../minister/">Play</a></li><li><a href="../game/" aria-current="page">How the model works</a></li><li><a href="../lab/">Experiments</a></li><li><a href="../about/">About</a></li></ul></nav>
+  </div>
+</header>
+<main id="main">
+<header class="pagehead">
+  <div class="pagehead-text">
+    <h1>How the model works</h1>
+    <p class="lead">You are the board of Zorggroep Cammelot, a made-up care group that runs De Brink GP practice and Cammelot Hospital in a town of 5,000 people, about seventy of whom you see in the streets. Residents fall ill, wait at the GP, are sometimes referred, and wait again for the hospital, sometimes longer than the agreed limit.</p>
+    <p>The game squeezes a few things together for play. In the Netherlands the GP practice and the hospital are separate organisations with their own contracts with the insurers, each hires its own doctors, and a board does not pick single software tools. One board over both, buying the tools itself, is made up, so that you can steer both.</p>
+    <p><a class="button" href="../minister/">Play in your browser</a></p>
+  </div>
+  <figure class="shot wide"><span class="frame"><img src="../img/queue-strip.png" width="644" height="154" alt="The game's title card: five residents queue outside De Brink GP practice, with a red exclamation mark in a speech bubble by the door, next to the market." loading="lazy"></span><figcaption>The title card: a Monday morning queue at De Brink.</figcaption></figure>
+</header>
+
+<nav class="toc" aria-label="On this page">
+  <ul>
+    <li><a href="#board">The board</a></li>
+    <li><a href="#ghost">Ghost Cammelot</a></li>
+    <li><a href="#ai-tools">AI tools in 60 towns</a></li>
+    <li><a href="#cases">The three cases</a></li>
+    <li><a href="#where-the-numbers-come-from">Where the numbers come from</a></li>
+  </ul>
+</nav>
+
+<section class="split" id="board">
+  <div class="split-text">
+    <h2>You are the board</h2>
+    <p>Three advisors sit at the table, each with a card along the top of the screen showing the figures they watch.</p>
+    <dl class="seats">
+      <dt>Marieke, CEO</dt>
+      <dd>The budget, which comes from the care group's yearly contracts with the health insurers, and the trust of the insurer and the supervisory board.</dd>
+      <dt>Ruud, head of care</dt>
+      <dd>How many people waited too long for the hospital, for a first visit and for treatment, how many of them were urgent, the months they spent past the limit, the healthy years lost while waiting, and how tired the staff are.</dd>
+      <dt>Yara, IT</dt>
+      <dd>The shared patient record, the outside suppliers linked into the town's computers, and the odds of a ransomware attack.</dd>
+    </dl>
+    <p id="limit">Waiting too long means past the Treeknorm. It is the longest wait the Dutch care sector agreed on: 4 weeks for a first hospital visit, 7 for treatment. It is an agreed goal, not a medical limit, and the Netherlands is looking at different limits by how urgent the care is (see <a href="../sources/#waits">Sources</a>). The game calls it the agreed limit. Its figures are counted over all 5,000 residents; you see about seventy of them in the streets, and the counts come from 5,000 made-up people with Dutch ages, illnesses and referral rates who use the same GPs, hospital and tools.</p>
+    <p>Once a season, from the first summer on, the board meets. Each advisor brings one item, they often want different things, and you pick what the board does. Between meetings you hire GPs, specialists, nurses, doctor's assistants and IT staff, build practices and rooms, and buy tools: an AI scribe, a shared patient record and, once the record is live, three AI agents (a triage agent, a scheduling agent and a care coordinator).</p>
+    <p>The game runs day by day. You can pause it, speed it up, or click any resident to see why they are waiting.</p>
+  </div>
+  <figure class="shot side"><span class="frame"><img src="../img/seat-care.png" width="400" height="470" alt="Ruud's panel in case 1: people who waited too long for the hospital, split into a first visit (over 4 weeks) and treatment (over 7 weeks), urgent patients who waited too long, months past the limit, healthy years lost while waiting, the GP wait, weeks to clear the hospital list, residents you see past the limit now and how the staff are, each with Ghost Cammelot's figure beside it and marked better or worse." loading="lazy"></span><figcaption>Ruud's panel in case 1. The people who waited too long come first, counted over all 5,000 residents, and each figure has Ghost Cammelot's beside it.</figcaption></figure>
+</section>
+
+<section class="split" id="ghost">
+  <div class="split-text">
+    <h2>Ghost Cammelot</h2>
+    <p>Next to your town runs Ghost Cammelot. It is the same town, started from the same random seed, with the same flu winters, outages and attacks on the same days. Nobody there hires anyone or buys anything. Most figures in the game have the ghost's figure beside them in grey, and overdue waiting is counted against the ghost.</p>
+    <p>Bad luck that hits both towns doesn't count against you, but chance inside the town still does. In the game's own check on 12 towns, buying the record link one day later moved a town's ten-year overdue waiting by up to 4 months, so the game calls a difference between two plans of under <span data-cal="oneTownNoise">10</span> months too close to call.</p>
+    <p>At the end of a free game you can play the same town again, with the same people falling ill on the same days. The end screen lists your runs side by side, with what you bought first in each. Open a friend's link and their run sits in that table too.</p>
+  </div>
+  <figure class="shot side full"><span class="frame"><img src="../img/ghost-tiles.png" width="532" height="336" alt="Four figures from the game's side panel, each with Ghost Cammelot's number beside it in grey: people in line at the GP, waiting for the hospital, sent back, and people who waited too long, counted over all 5,000 residents." loading="lazy"></span><figcaption>Four figures from the side panel in case 1, each with Ghost Cammelot's beside it in grey.</figcaption></figure>
+</section>
+
+<section class="split" id="ai-tools">
+  <div class="split-text">
+  <h2>What the AI tools did in 60 towns</h2>
+  <p>I played the free-play town with the full waiting room sixty times, ten years each, with a few fixed plans, and counted the people who waited longer than the agreed limit for the hospital, out of all 5,000 residents. As detail I counted the months they spent on the list past it, the urgent patients among them, and the healthy years lost while waiting. The town follows Dutch rates for illness, referrals and deaths (see <a href="#how-far">how close the town is to a real one</a>), but the tools' effects are mine. The scheduling agent adds 30% to what the hospital can treat (the national capacity-planning model plan aims for 2% more productivity). The record link cuts the referrals that arrive without the GP's notes from 15 in 100 to 3 once every GP file in it is complete, and about 60 in 100 are on the day it goes live. Read the numbers as a comparison of plans in one town, not as what would happen in a real town.</p>
+  <p>With nothing done, <span data-drp="waitingRoom.nothing">12,105</span> people waited too long: <span data-drf="waitingRoom.nothing">11,753</span> for a first hospital visit (over 4 weeks) and <span data-drt="waitingRoom.nothing">352</span> for treatment (over 7 weeks), <span data-dru="waitingRoom.nothing">457</span> of them urgent. Together they spent <span data-dr="waitingRoom.nothing">6,667</span> months past the limit. An AI scribe on its own left <span data-drp="waitingRoom.scribe">12,124</span> people who waited too long, slightly more, because the GPs send the extra people they see on to the same hospital. In the game the record link alone brought it to <span data-drp="waitingRoom.record">6,109</span> (<span data-dr="waitingRoom.record">3,738</span> months past the limit), because referrals then reach the hospital with the GP's notes, and the record with the scheduling agent to <span data-drp="waitingRoom.sched">1,743</span> (<span data-dr="waitingRoom.sched">2,138</span> months, <span data-dru="waitingRoom.sched">60</span> urgent).</p>
+  <p>Healthy years lost while waiting are an estimate. Every month on the hospital list costs part of a year in full health, more for a worn hip than for a heart check-up, from my reading of an English study (Gibbs et al. 2024, see <a href="../sources/#people">Sources</a>), with each resident's wait tied to one of their conditions by my own rule. All waiting for the hospital counts, not only the part past the limit. With nothing done the town lost <span data-drq="mid.nothing">725</span> healthy years in ten years (<span data-drq="low.nothing">581</span> to <span data-drq="high.nothing">840</span> at the low and high rates), with the scribe <span data-drq="mid.scribe">735</span>, with the record link <span data-drq="mid.record">440</span> and with the record and the scheduling agent <span data-drq="mid.sched">155</span> (<span data-drq="low.sched">124</span> to <span data-drq="high.sched">180</span>). The game shows it next to Ghost Cammelot's: the number moves with the rates, and in the 60 towns the order of the plans was the same at the low and high rates.</p>
+  <p>Deaths linked to waiting are an estimate too, and small at Dutch rates: <span data-drd="waitingRoom.nothing">0.7</span> in ten years with nothing done, <span data-drd="waitingRoom.sched">0.3</span> with the record and the scheduling agent. The game leaves them out and keeps them only here.</p>
+  <p>The triage agent on the record gives mixed results. It left <span data-drp="waitingRoom.recTriage">7,230</span> people who waited too long, more than the record alone, and <span data-drq="mid.recTriage">449</span> healthy years lost, about the same as the record alone. On months past the limit it left <span data-dr="waitingRoom.recTriage">3,551</span> on average, fewer than the record alone, but in 41 of the 60 towns it left more months, and a few towns where it helped a lot pull the average down. These counts include the people it wrongly tells "it's nothing". They wait at home for 10 days before they go to the GP, so their clock starts 10 days before the GP's referral, as if the agent had sent them on the day it answered.</p>
+  <p>What mattered was which tool took load off the slowest line. In this town that is the hospital, so the scheduling agent helped most. Protected time for the doctors costs more than it saves here, because at Dutch rates the GPs rarely burn out. Each of the three plans here that built the record link left fewer people waiting too long than doing nothing.</p>
+  <details class="sens">
+    <summary>With weaker effects, and other settings for the harm of waiting</summary>
+  <p>I also played the same 60 towns with weaker effects. With the scheduling agent adding 10% instead of 30%, the record and the agent left <span data-drs="sched10.sched">3,111</span> months, still fewer than the record alone (<span data-drs="sched10.record">3,738</span>); at the model plan's 2% it left <span data-drs="sched2.sched">4,897</span>, more than the record alone. Adding protected time for the doctors gave <span data-drs="sched10.schedProt">3,847</span> at 10% and <span data-drs="sched2.schedProt">6,277</span> at 2%. Buying everything at once left <span data-drs="sched10.everything">4,480</span> at 10% and <span data-drs="sched2.everything">5,613</span> at 2%, against <span data-dr="waitingRoom.nothing">6,667</span> with nothing done. If the record only cuts missing notes to 10 in 100, the record alone left <span data-drs="lost10.record">5,907</span>, not far from doing nothing, and the record with the triage agent <span data-drs="lost10.recTriage">5,408</span>. In every one of these the AI scribe on its own changed almost nothing.</p>
+  <p>The deaths linked to waiting rest on one assumption: 6% more risk of dying for every 4 weeks past the agreed limit. With 8%, the top of the range in the cancer study, the same waits give <span data-drh="hr108.nothing">0.9</span> deaths in ten years with nothing done and <span data-drh="hr108.sched">0.5</span> with the record and the scheduling agent, against <span data-drh="hr106.nothing">0.7</span> and <span data-drh="hr106.sched">0.3</span> at 6%. With no harm from waiting they are none, and the months of overdue waiting stay the same.</p>
+  </details>
+  <p>The <a href="../lab/">lab</a> tests whether an agent reads a referral right. The game shows what happens to the town when it does: an agent that reads every letter right can still make waits longer if the hospital behind it can't treat people any faster.</p>
+  </div>
+<figure class="chartfig side sticky">
+  <svg class="chart" id="chart-doneright" viewBox="0 0 440 188" role="img" aria-labelledby="chart-doneright-t"><title id="chart-doneright-t">People who waited longer than the agreed limit for the hospital in ten years, of 5,000 residents, mean of 60 simulated towns, per plan</title><g class="ghost"><text class="lbl" x="190" y="25" text-anchor="end">Nothing done</text><rect x="200" y="10" width="190" height="20"/><text class="val" x="398" y="26">12105</text></g><g class="bar"><text class="lbl" x="190" y="61" text-anchor="end">AI scribe only</text><rect x="200" y="46" width="190" height="20"/><text class="val" x="398" y="62">12124</text></g><g class="bar"><text class="lbl" x="190" y="97" text-anchor="end">Shared record only</text><rect x="200" y="82" width="96" height="20"/><text class="val" x="304" y="98">6109</text></g><g class="bar"><text class="lbl" x="190" y="133" text-anchor="end">Record + triage agent</text><rect x="200" y="118" width="113" height="20"/><text class="val" x="321" y="134">7230</text></g><g class="good"><text class="lbl" x="190" y="169" text-anchor="end">Record + scheduling agent</text><rect x="200" y="154" width="27" height="20"/><text class="val" x="235" y="170">1743</text></g></svg>
+  <figcaption><a class="chip sim" href="#where-the-numbers-come-from">Simulated</a> People who waited longer than the agreed limit for the hospital in ten years, of all 5,000 residents, mean of 60 towns with the full waiting room. Grey: Ghost Cammelot's plan, nothing done.</figcaption>
+</figure>
+</section>
+
+<section id="cases">
+  <h2 class="sect">The four cases</h2>
+  <p class="intro">Each case is one town with three stars to earn, and the targets are mine. The game's tests play each case in a set of test towns with a few fixed plans, to check that it shows what it is meant to.</p>
+
+  <article class="case">
+    <div class="case-main">
+      <p class="kicker">Case 1 · one year</p>
+      <h3>The scribe</h3>
+      <p>De Brink can't keep up. One of its two GPs is back from sick leave for a day or so a week until autumn, and people wait about a week to see a GP. Ruud, your head of care, wants a third GP at De Brink. Yara from IT would rather try an AI scribe there first: it writes the notes during the consult, so the GPs have more time for patients. Marieke points at the hospital list, where many of the people treated have waited longer than the agreed 4 weeks, and asks for a third specialist. A GP costs about €140k a year, a specialist about €220k, the scribe €5k and €3k a year for each GP. You have one year.</p>
+      <ul class="stars">
+        <li>People wait less than 2 days for a GP, on average over the year.</li>
+        <li>Over the year, at most 4 in 10 as many people wait too long for the hospital as in Ghost Cammelot, the same town where nobody changes anything. Too long means past the agreed limit: 4 weeks for a first hospital visit, 7 weeks for treatment.</li>
+        <li>The GP star and the hospital star both, with at least €250k left in the budget.</li>
+      </ul>
+      <details>
+        <summary>What the tests show</summary>
+        <p>A shorter line at the GP sends more people on to the hospital. In the test towns, one extra GP clears De Brink's line and rarely earns the hospital star. One extra specialist does the reverse. The scribe on its own shortens De Brink's line, but not enough for a star. A GP and a specialist together earn all three in most towns.</p>
+      </details>
+    </div>
+    <figure class="shot side"><span class="frame"><img src="../img/case-end.png" width="720" height="412" alt="The end card of case 1 after hiring a GP only. One line at the top says hospital treatment capacity held people back most. Under it, three tiles compare the town with Ghost Cammelot: the wait for the GP is 7.4 days shorter, 85 more people waited too long for the hospital, and there is €166k less money left." loading="lazy"></span><figcaption>The end card of case 1 after hiring a GP only: a shorter wait for the GP, but more people waited too long for the hospital than in Ghost Cammelot. Further down are the stars and a table that replays the town with one change at a time.</figcaption></figure>
+  </article>
+
+  <article class="case">
+    <div class="case-main">
+      <p class="kicker">Case 2 · three years</p>
+      <h3>The record link</h3>
+      <p>De Brink can't keep up, because one of its two GPs is back from sick leave for only a day or so a week until autumn. Yara from IT wants a triage agent at De Brink. The agent reads people's history from a record link, and Cammelot doesn't have one yet. Her team builds it between their other work, about five months of it, and it can only go live with a release of the hospital system, which in Cammelot comes twice a year. Anything else you buy for the hospital waits in the same IT queue. Paying for the record puts Zorggroep Cammelot in the red until the insurers' money comes on New Year, and each month in the red costs a little of their trust. You have three years.</p>
+      <ul class="stars">
+        <li>Over the three years, people spend at most 8 in 10 as many months on the hospital list past the agreed limit as in Ghost Cammelot. Too long means past the agreed limit: 4 weeks for a first hospital visit, 7 weeks for treatment.</li>
+        <li>Over the three years, at most 5 in 10 as many people wait too long for the hospital as in Ghost Cammelot.</li>
+        <li>Both of those, with the triage agent at work for at least a year and no agent mistake while the record link is down.</li>
+      </ul>
+      <details>
+        <summary>What the tests show</summary>
+        <p>A tool that writes into the hospital record can only go live in one of the hospital system's planned change windows, which the game calls releases. Cammelot has two a year; that is my rule for the game, and real hospitals differ.</p>
+        <p>The record on its own cuts the overdue waiting in most test towns, because referrals arrive with the GP's notes, and earns one star in about 6 in 10 of them, never all three: the hospital list stays late. The triage agent sends people on faster than the hospital can treat them. When the record goes down the agent guesses, and some of its guesses send serious cases home. A fallback protocol that stands the agents down during an outage, with an extra specialist in the second year, earns all three stars in most towns.</p>
+      </details>
+    </div>
+  </article>
+
+  <article class="case">
+    <div class="case-main">
+      <p class="kicker">Case 3 · two years</p>
+      <h3>The software company</h3>
+      <p>De Brink can't keep up, because one of its two GPs is back from sick leave for only a day or so a week until autumn. The company that makes De Brink's practice software has been hit by ransomware in two other regions. Yara from IT expects it to reach Cammelot early next year. Every tool you buy comes from another company with its own link into the computers. A scribe at the practice is set up by its own supplier in a few weeks; tools for the hospital wait in Yara's IT queue until her team has connected them. You have two years.</p>
+      <ul class="stars">
+        <li>People wait less than 2 days for a GP, on average over the two years.</li>
+        <li>Ransomware keeps computers in Cammelot locked for less than 30 days in all.</li>
+        <li>Both of those, with no more people waiting too long for the hospital than in Ghost Cammelot and at least €250k left in the budget.</li>
+      </ul>
+      <details>
+        <summary>What the tests show</summary>
+        <p>Tested offline backups keep the lock short in every test town, but De Brink's line stays long. Tools at the GP practice, such as the scribe, go live within weeks. Tools that work inside the hospital's systems wait in the hospital's IT queue for its checks and its next release. Each new tool adds a supplier with a way in, and in some towns a second attack comes in through one of them.</p>
+      </details>
+    </div>
+    <figure class="shot wide"><span class="frame"><img src="../img/xray.png" width="920" height="418" alt="The X-ray view in case 3: the town darkened, with the GP system, hospital record, scheduler and treatment drawn as boxes, letters from the GP to the hospital taking 4 days with two sent back this year, and a legend with the ransomware odds marked as a made-up game figure." loading="lazy"></span><figcaption>The X-ray in case 3 draws the town's systems over the map. Click a practice's letter line to open one of its referrals field by field: who it is for, the question for the specialist, whether the GP's notes will reach the hospital, and where it is now.</figcaption></figure>
+  </article>
+
+  <article class="case">
+    <div class="case-main">
+      <p class="kicker">Case 4 · three years</p>
+      <h3>The review desk</h3>
+      <p>Each season suppliers bring Cammelot Hospital new tools: a document sorter, clinic letter drafts, appointment reminders, the agents De Brink has read about. Coding agents make them quick to write. Every one still waits for Yara's IT team to link it, then for the privacy officer, the security officer and the clinical lead, who have a day a week or less for this, and for the staff who test it. The company behind the hospital record sells some of the same tools as its own modules. Those need about half the IT work, cost more each year, get dearer when the contract is renewed in year 3 and stop when that company is down. Yara would also like part of her team's time for a copy of the patient data that the hospital owns itself, so that tools which only read it need less IT work later. There are no doctors to hire in this case. You have three years.</p>
+      <ul class="stars">
+        <li>Over the three years, at most 8 in 10 as many people wait too long for the hospital as in Ghost Cammelot, the same town where nobody buys anything. Too long means past the agreed limit: 4 weeks for a first hospital visit, 7 weeks for treatment.</li>
+        <li>At least 6 new tools working for patients on the last day, and the tools that go live in year 3 take 200 days or less on average from purchase.</li>
+        <li>Both of those, and no problem the reviewers missed reaches a patient.</li>
+      </ul>
+      <details>
+        <summary>What the tests show</summary>
+        <p>In the test towns the tools wait longest for the one IT officer who links them, and much less for the three reviewers. Buying a few tools with care, and having the GP pass on the patient's story when referring, does best of the plans I tried, and even that earns all three stars in only a small share of towns. Giving part of the IT officer's time to a copy of the patient data that the hospital owns itself did not pay off at this town's size, with this many tools. In my rough count it starts to pay off at about thirty small tools that only read the data.</p>
+      </details>
+    </div>
+  </article>
+</section>
+
+<section class="split" id="where-the-numbers-come-from">
+  <div class="split-text">
+  <h2>Where the numbers come from</h2>
+  <p>Every tuning number in the game carries one of three tags in the code:</p>
+  <dl class="facts">
+    <dt><span class="chip src">Sourced</span></dt>
+    <dd>Taken from a named source, such as the NZa's Treeknorm or the CBS life table.</dd>
+    <dt><span class="chip cal">Calibrated</span></dt>
+    <dd>Worked out by me from a real figure, for example a survey band or a pay scale, then scaled to one town.</dd>
+    <dt><span class="chip ill">Illustrative</span></dt>
+    <dd>Picked by me for play, with no source behind it.</dd>
+  </dl>
+  <p>Of the 255 tuning numbers in the game today, 14 are sourced, 10 calibrated and 231 illustrative. Most of what makes it playable is mine: prices, how fast people get worse while they wait, the odds of an attack, the star targets. The people rest on real tables: ages from CBS for 1 January 2026, chronic conditions by age from GP records (Nivel, published by CBS), and the Treeknorm from the NZa: 4 weeks for a first visit, 7 weeks for treatment. In the game, the <strong>?</strong> button opens a list of every number with a badge: verified (read at the source), secondary (read in someone else's summary) or assumption (mine). The <a href="../sources/">Sources page</a> lists the real figures with links.</p>
+  <p>For example, GPs in Cammelot spend 30% of their time on paperwork (calibrated): in a 2023 LHV survey of 2,296 GPs the most common answer was 21 to 30%. The AI scribe brings that to 25% (calibrated), from a randomised trial in NEJM AI in 2025 that found about 22 minutes a day less on notes. A second trial found less.</p>
+
+  </div>
+  <figure class="chartfig side">
+    <svg class="chart params" viewBox="-4 0 568 90" role="img" aria-labelledby="chart-params-t"><title id="chart-params-t">255 tuning numbers: 14 sourced, 10 calibrated, 231 illustrative</title><rect class="t-sourced" x="0" y="8" width="31" height="34"/><rect class="t-calibrated" x="31" y="8" width="22" height="34"/><rect class="t-illustrative" x="53" y="8" width="507" height="34"/><g class="lg t-sourced"><rect x="0" y="62" width="16" height="16"/><text x="24" y="76">14 Sourced</text></g><g class="lg t-calibrated"><rect x="190" y="62" width="16" height="16"/><text x="214" y="76">10 Calibrated</text></g><g class="lg t-illustrative"><rect x="380" y="62" width="16" height="16"/><text x="404" y="76">231 Illustrative</text></g></svg>
+    <figcaption>The game's 255 tuning numbers by tag, counted from its code at every build of this site.</figcaption>
+  </figure>
+</section>
+<section class="prose">
+  <h3 id="how-far">How close the town is to a real one</h3>
+  <p>Cammelot has 5,000 residents. The seventy or so you see in the streets are a sample you can follow; the score counts all 5,000. The town follows Dutch rates for ages (CBS), chronic conditions (Nivel's GP records), GP visits and referrals (Nivel) and natural deaths (the CBS life table). The extra risk of dying from waiting, used only for the deaths estimate on this page, comes from Hanna et al. (BMJ 2020): each 4 weeks of delayed cancer treatment raised the risk of death by 6%. Applying that to everyone on the hospital list is my assumption. Prices, how much time the hospital has, and what the AI tools do are mine.</p>
+  <p>When nobody does anything in the full waiting room, over ten years in three test towns, <span data-cal="afterDeaths">16</span> in 1,000 residents die each year. A Dutch town with the same ages would lose <span data-cal="afterTarget">15.6</span>. The GPs send <span data-cal="afterReferrals">386</span> referrals per 1,000 residents a year, against <span data-cal="afterReferralsTarget">368</span> at Nivel's rate for the same ages (323 for the Netherlands as a whole; this town is older). Deaths linked to waiting are rare at these rates: about <span data-cal="afterWaitDeaths">0.013</span> per 1,000 a year. So the game scores the Dutch measures instead: people who waited longer than the agreed limit, and months of overdue waiting, the time people spend waiting for the hospital past it. It shows healthy years lost while waiting beside them. The game's cards and end screens leave the deaths out, because in most towns they would read a few tenths of a death; the estimates on this page come from the same runs.</p>
+  <p>Before the calibration on <span data-cal="date">11 November 2026</span>, about <span data-cal="beforeDeaths">78.4</span> in 1,000 residents died each year against <span data-cal="beforeTarget">13.5</span> for the same ages, and residents were referred about <span data-cal="beforeReferralsTimes">5.1</span> times as often as in real GP care.</p>
+
+  <h3>What the game's AI tools are</h3>
+  <p>The scribe and the agents in the game are simple rules with error rates I picked for play. The game makes no calls to a language model; the <a href="../lab/">lab</a> tests a real model, on a separate synthetic task.</p>
+  <p>None of the tools works at full strength on its first day. Staff start with about 30% of the effect and reach all of it after 120 days (illustrative; in a 2026 JAMA study only about a third of AI-scribe users used it for at least half their visits). Training days get them there 60 days sooner, at a cost in money and staff time.</p>
+  <p>The longer the triage agent is usually right, the less the GPs check it. It misses 2% of serious cases at the start, 2 points more each year nobody has protected time to check its calls, up to 10% (illustrative; studies of automation bias find that doctors often follow a confident wrong answer).</p>
+  <p>The record link carries the GP files as they are. About 60% of them are complete when it goes live, and the GPs complete 10 points more a year, 15 more at a practice whose AI scribe is fully in use (all illustrative; I found no Dutch figure). The game assumes the specialist always opens the record.</p>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <p><strong>Cammelot is a game and a synthetic experiment.</strong> The town, its people and its care group are invented. It is not a forecast and not medical advice.</p>
+    <p>Game code AGPL-3.0, lab code MIT, data and text CC BY 4.0. The code is not public yet. Pixel art in the game by LimeZu. <a href="../about/#credits">Credits and licences</a></p>
+    <p>Made by Simone Cammel. <a href="mailto:contact@cammelot.org">contact@cammelot.org</a> · <a href="../sources/">Sources</a> · <a href="../press/">Press kit</a></p>
+  </div>
+</footer>
+</body>
+</html>

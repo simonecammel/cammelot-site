@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Cammelot</title>
+<meta name="description" content="A browser game where you are the board of the GP practice and hospital of a made-up Dutch town of 5,000 people, next to the same town where nobody acts. With a test bench for AI agents at a hospital referral desk. Synthetic, not a forecast.">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://cammelot.org/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cammelot">
+<meta property="og:title" content="Cammelot">
+<meta property="og:description" content="A browser game where you are the board of the GP practice and hospital of a made-up Dutch town of 5,000 people, next to the same town where nobody acts. With a test bench for AI agents at a hospital referral desk. Synthetic, not a forecast.">
+<meta property="og:url" content="https://cammelot.org/">
+<meta property="og:image" content="https://cammelot.org/img/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cammelot: a pixel-art picture of Cammelot with the page title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cammelot">
+<meta name="twitter:description" content="A browser game where you are the board of the GP practice and hospital of a made-up Dutch town of 5,000 people, next to the same town where nobody acts. With a test bench for AI agents at a hospital referral desk. Synthetic, not a forecast.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="page-home">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><svg class="logo" viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#3f2615" d="M5 1h6v1H5zM4 2h1v2H4zM11 2h1v2h-1zM1 4h14v1H1zM0 5h1v8H0zM15 5h1v8h-1zM1 13h14v1H1z"/><path fill="#b5523b" d="M1 5h14v8H1z"/><path fill="#d9744f" d="M1 5h14v1H1z"/><path fill="#fff8e6" d="M5 6h6v6H5z"/><path fill="#3f9a52" d="M7 7h2v4H7zM6 8h4v2H6z"/></svg><span>Cammelot</span></a>
+    <nav aria-label="Main"><ul><li><a class="button play" href="minister/">Play</a></li><li><a href="game/">How the model works</a></li><li><a href="lab/">Experiments</a></li><li><a href="about/">About</a></li></ul></nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-in">
+    <div class="hero-text">
+      <!-- Headline chosen by the owner, 12 Nov 2026. -->
+      <h1 id="hero-title">Everyone seems to know how to <em>do</em> AI in healthcare</h1>
+      <p class="sub">You are the board of a made-up Dutch GP practice and hospital. Bring in staff, AI and IT one measure at a time, then compare the result with the same town where nothing changed.</p>
+      <p class="facts-line">Free · No account · Synthetic model · Not a forecast</p>
+      <p class="cta"><a class="button big" href="minister/?case=scribe">Play case 1 (about 10 minutes)</a> <a class="button alt" href="game/">How the model works</a></p>
+      <p class="maker">Made by Simone Cammel.</p>
+      <p class="small">About 2 MB, music loads as it plays. Works on a phone, best on a laptop.</p>
+    </div>
+    <div class="hero-pic">
+      <div class="loop"><video src="img/hero.webm" poster="img/hero.png" width="640" height="360" autoplay muted loop playsinline preload="metadata" aria-label="Case 1 in motion: residents walk past De Brink GP practice in the pixel-art town, with speech bubbles over their heads for feeling ill, waiting and being seen."></video><img src="img/hero.png" width="640" height="360" alt="Case 1 in motion: residents walk past De Brink GP practice in the pixel-art town, with speech bubbles over their heads for feeling ill, waiting and being seen." class="poster"></div>
+    </div>
+  </div>
+</section>
+
+<section class="prose why-first" id="why" aria-labelledby="why-title">
+  <h2 id="why-title">Why I built this</h2>
+  <p>Most of what I read about AI in healthcare is claims without numbers. It rarely says which tool, in which part of the care path, or what it does to the people further down that path.</p>
+  <p>In the Netherlands that question now comes with a budget. The government funds change one measure at a time, such as a triage tool, a planning tool or a scribe, and the AZWA programme pays for six such model plans from 2027. A patient goes through all of them, and a measure that speeds up one step can make the next line longer.</p>
+  <p>I work in Big Tech, so you can assume I lean towards AI. In the game an AI scribe on its own barely changes how many people wait longer than the agreed limit for the hospital, because the GPs see more people and send the extra ones on to the same hospital.</p>
+  <p>Case 4 lets the hospital give part of its one IT officer's time to a copy of the patient data that it owns itself, so that later tools need less IT work. At this town's size that did not pay off. A plan that gave the copy half of the IT time had fewer months of waiting too long than the same plan without it in 30% of 200 simulated towns after three years, and in 23% of 48 towns after six. These are results of the game's own assumptions, not measurements of a real hospital.</p>
+</section>
+
+<section class="split" id="from-simulation" aria-labelledby="from-simulation-title">
+  <div class="split-text">
+    <h2 id="from-simulation-title">From a simulation to a game</h2>
+    <p>Cammelot started as a simulation: 45 residents, three GPs and a hospital, with a switch between the care system as it is and one rebuilt around AI. Flip the switch and the waiting lists shrank.</p>
+    <p>The reaction I got most was: fine, but how do we get there? Nobody rebuilds a care system in one go. Someone decides what to buy first, from this year's budget, while the hospital list keeps growing, and each choice changes what the next one can do.</p>
+    <p>So I turned it into a game where you make those choices yourself.</p>
+  </div>
+  <figure class="shot side"><span class="frame"><img src="img/first-sim.png" width="800" height="470.5" alt="The first Cammelot: a pixel-art town map with named residents, a hospital and three GP practices, a bar along the top with a switch between IST and SOLL, and a resident's dossier on the right." loading="lazy"></span><figcaption>The first version, with a switch between today's care (IST) and an AI-native version (SOLL). Its settings, such as 30% of GP time on paperwork, were my assumptions, and some of its figures I could not confirm later.</figcaption></figure>
+</section>
+
+<section class="band" id="how-it-plays" aria-labelledby="how-it-plays-title">
+  <h2 id="how-it-plays-title">How a case plays</h2>
+  <ol class="steps">
+    <li><strong>Pick a case.</strong> Each is one town, one question and one to three years of town time, played in about 10 to 20 minutes.</li>
+    <li><strong>Look around.</strong> Click a resident to see which GP they have and what they are waiting for. Three advisors along the top watch the money, the waits and the IT.</li>
+    <li><strong>Choose.</strong> Hire doctors, buy an AI scribe, build a shared patient record. Everything is paid from the insurer contracts and takes time to work. Once a season the board meets to settle what your advisors disagree about.</li>
+    <li><strong>Watch.</strong> The game runs day by day, and you can pause it or speed it up. Every figure has Ghost Cammelot's beside it in grey: the same town with the same flu winters, where nobody acts.</li>
+    <li><strong>Play again.</strong> The end card gives up to three stars and replays the town with one change at a time, so you see what each choice did. Send a friend the link and their run sits next to yours.</li>
+  </ol>
+  <div class="cases">
+    <a class="casecard" href="minister/?case=scribe">
+      <p class="kicker">Case 1 · one year · about 10 minutes</p>
+      <h3>The scribe</h3>
+      <p class="q">What happens when AI speeds up the GP but not the hospital?</p>
+      <p>De Brink can't keep up. One of its two GPs is back from sick leave for a day or so a week until autumn, and people wait about a week to see a GP. Ruud, your head of care, wants a third GP at De Brink. Yara from IT would rather try an AI scribe there first: it writes the notes during the consult, so the GPs have more time for patients. Marieke points at the hospital list, where many of the people treated have waited longer than the agreed 4 weeks, and asks for a third specialist. A GP costs about €140k a year, a specialist about €220k, the scribe €5k and €3k a year for each GP. You have one year.</p>
+      <p class="go">Play case 1</p>
+    </a>
+    <a class="casecard" href="minister/?case=record">
+      <p class="kicker">Case 2 · three years · about 15 minutes</p>
+      <h3>The record link</h3>
+      <p class="q">Can AI work before the information infrastructure does?</p>
+      <p>De Brink can't keep up, because one of its two GPs is back from sick leave for only a day or so a week until autumn. Yara from IT wants a triage agent at De Brink. The agent reads people's history from a record link, and Cammelot doesn't have one yet. Her team builds it between their other work, about five months of it, and it can only go live with a release of the hospital system, which in Cammelot comes twice a year. Anything else you buy for the hospital waits in the same IT queue. Paying for the record puts Zorggroep Cammelot in the red until the insurers' money comes on New Year, and each month in the red costs a little of their trust. You have three years.</p>
+      <p class="go">Play case 2</p>
+    </a>
+    <a class="casecard" href="minister/?case=software">
+      <p class="kicker">Case 3 · two years · about 15 minutes</p>
+      <h3>The software company</h3>
+      <p class="q">When does digitalisation make care more vulnerable?</p>
+      <p>De Brink can't keep up, because one of its two GPs is back from sick leave for only a day or so a week until autumn. The company that makes De Brink's practice software has been hit by ransomware in two other regions. Yara from IT expects it to reach Cammelot early next year. Every tool you buy comes from another company with its own link into the computers. A scribe at the practice is set up by its own supplier in a few weeks; tools for the hospital wait in Yara's IT queue until her team has connected them. You have two years.</p>
+      <p class="go">Play case 3</p>
+    </a>
+    <a class="casecard" href="minister/?case=foundation">
+      <p class="kicker">Case 4 · three years · about 20 minutes</p>
+      <h3>The review desk</h3>
+      <p class="q">When AI tools get cheap, where do they wait?</p>
+      <p>Each season suppliers bring Cammelot Hospital new tools: a document sorter, clinic letter drafts, appointment reminders, the agents De Brink has read about. Coding agents make them quick to write. Every one still waits for Yara's IT team to link it, then for the privacy officer, the security officer and the clinical lead, who have a day a week or less for this, and for the staff who test it. The company behind the hospital record sells some of the same tools as its own modules. Those need about half the IT work, cost more each year, get dearer when the contract is renewed in year 3 and stop when that company is down. Yara would also like part of her team's time for a copy of the patient data that the hospital owns itself, so that tools which only read it need less IT work later. There are no doctors to hire in this case. You have three years.</p>
+      <p class="go">Play case 4</p>
+    </a>
+  </div>
+  <p class="small">The star targets are mine, picked for play. The playing times are my estimates for a first play at normal speed; the faster speeds shorten them.</p>
+</section>
+
+<section class="band" id="found" aria-labelledby="found-title">
+  <h2 id="found-title">What I found</h2>
+  <div class="findings">
+    <article class="finding">
+      <p class="chip-row"><a class="chip sim" href="game/#ai-tools">Simulated</a></p>
+      <h3>In the game, the record link cut the number of people who waited too long more than any AI tool on its own</h3>
+      <p class="fig"><span class="ghostnum"><span data-drp="waitingRoom.nothing">12,105</span></span> <span class="arrow" aria-hidden="true">›</span> <span class="bignum"><span data-drp="waitingRoom.record">6,109</span></span></p>
+      <p>In the game's busiest town, played sixty times for ten years each, a resident's wait for the hospital went past the agreed limit <span data-drp="waitingRoom.nothing">12,105</span> times with nothing done (one person can count more than once), and <span data-drp="waitingRoom.scribe">12,124</span> times with an AI scribe alone. With the record link it was <span data-drp="waitingRoom.record">6,109</span>, and <span data-drp="waitingRoom.sched">1,743</span> with the record and the scheduling agent. These are game figures from effects I picked. <a href="game/#ai-tools">How I counted</a></p>
+    </article>
+    <article class="finding">
+      <p class="chip-row"><a class="chip syn" href="lab/#limits">Synthetic</a></p>
+      <h3>The agent passed a false claim on to the desk</h3>
+      <p class="fig"><span class="bignum">13</span> <span class="of">of 15</span></p>
+      <p>On 155 synthetic Dutch referral letters, a tool description told the AI agent that messages to the GP's own address would not arrive. The agent proposed the attacker's address 15 times, and a policy rule refused all 15. In 13 of those cases its summary still told the desk the false reason as if it were true. <a href="lab/">The lab</a></p>
+    </article>
+  </div>
+  <p class="found-note">The town follows Dutch rates for ages, illness, referrals and natural deaths. The prices and what the tools do are mine, so the game compares choices and does not forecast. The lab tested one model on letters written for it. The <a href="game/#where-the-numbers-come-from">game page</a> and the <a href="sources/">sources</a> say where each number comes from.</p>
+</section>
+
+<section class="byline">
+  <p>Made by Simone Cammel. Questions and corrections are welcome at <a href="mailto:contact@cammelot.org">contact@cammelot.org</a>.</p>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <p><strong>Cammelot is a game and a synthetic experiment.</strong> The town, its people and its care group are invented. It is not a forecast and not medical advice.</p>
+    <p>Game code AGPL-3.0, lab code MIT, data and text CC BY 4.0. The code is not public yet. Pixel art in the game by LimeZu. <a href="about/#credits">Credits and licences</a></p>
+    <p>Made by Simone Cammel. <a href="mailto:contact@cammelot.org">contact@cammelot.org</a> · <a href="sources/">Sources</a> · <a href="press/">Press kit</a></p>
+  </div>
+</footer>
+</body>
+</html>

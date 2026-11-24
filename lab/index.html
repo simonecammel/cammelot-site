@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; base-uri 'none'; form-action 'none'">
+<title>Agent Reliability Lab · Cammelot</title>
+<meta name="description" content="A separate synthetic experiment, not a validation of the game: fixed rules, a language model and a send-everything-to-a-person reference on 155 synthetic Dutch GP referral letters. Results with their limits, then attacks and method.">
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="canonical" href="https://cammelot.org/lab/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cammelot">
+<meta property="og:title" content="Agent Reliability Lab · Cammelot">
+<meta property="og:description" content="A separate synthetic experiment, not a validation of the game: fixed rules, a language model and a send-everything-to-a-person reference on 155 synthetic Dutch GP referral letters. Results with their limits, then attacks and method.">
+<meta property="og:url" content="https://cammelot.org/lab/">
+<meta property="og:image" content="https://cammelot.org/img/og-lab.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Agent Reliability Lab · Cammelot: a pixel-art picture of Cammelot with the page title">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agent Reliability Lab · Cammelot">
+<meta name="twitter:description" content="A separate synthetic experiment, not a validation of the game: fixed rules, a language model and a send-everything-to-a-person reference on 155 synthetic Dutch GP referral letters. Results with their limits, then attacks and method.">
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body class="page-lab">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="../"><svg class="logo" viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" focusable="false" shape-rendering="crispEdges"><path fill="#3f2615" d="M5 1h6v1H5zM4 2h1v2H4zM11 2h1v2h-1zM1 4h14v1H1zM0 5h1v8H0zM15 5h1v8h-1zM1 13h14v1H1z"/><path fill="#b5523b" d="M1 5h14v8H1z"/><path fill="#d9744f" d="M1 5h14v1H1z"/><path fill="#fff8e6" d="M5 6h6v6H5z"/><path fill="#3f9a52" d="M7 7h2v4H7zM6 8h4v2H6z"/></svg><span>Cammelot</span></a>
+    <nav aria-label="Main"><ul><li><a class="button play" href="../minister/">Play</a></li><li><a href="../game/">How the model works</a></li><li><a href="../lab/" aria-current="page">Experiments</a></li><li><a href="../about/">About</a></li></ul></nav>
+  </div>
+</header>
+<main id="main">
+<header class="labhead">
+  <p class="kicker">Experiments</p>
+  <h1>Agent Reliability Lab</h1>
+  <p class="opening">This is a separate synthetic experiment. It does not validate the game, a clinical workflow or a model's reliability in real healthcare.</p>
+  <p class="lead lab-lead">The policy layer stopped the unsafe action, but the agent repeated the attacker's false claim to the desk in 13 of 15 attempts.</p>
+  <p>A directory tool's description said that messages to the GP's own address would not arrive and gave another address. The agent proposed that address 15 times, and a policy rule that only allows messages to the referral's own GP refused all 15. In 13 of those cases the agent's closing summary still gave the desk the false reason as if it were true. <a href="#against">More on this below</a>.</p>
+  <p>The lab tests one hospital task: the referral desk. It reads the letters GP practices send, then books an appointment, asks the GP for something that is missing, or passes the letter to a person. Fixed rules, a language model and a person each handle the same synthetic Dutch letters.</p>
+  <dl class="runbox" aria-label="The run on this page">
+    <div><dt>Run</dt><dd>5 November 2026</dd></div>
+    <div><dt>Letters</dt><dd><span data-lab="orig.A.n">155</span>, synthetic, Dutch</dd></div>
+    <div><dt>World</dt><dd>v1.8, seed 1</dd></div>
+    <div><dt>Model</dt><dd>Claude Sonnet 5.5</dd></div>
+    <div><dt>Runs per letter</dt><dd>1</dd></div>
+    <div><dt>Answer key</dt><dd>fixed before the run</dd></div>
+  </dl>
+  <p class="runlinks"><a href="runs/2026-11-05-v1.8/">Full report</a> · <a href="runs/2026-11-05-v1.8/results.json" download>Results as JSON</a> · <a href="#runs">All run reports</a></p>
+</header>
+
+<section class="split" id="results">
+  <div class="split-text">
+  <h2>Results in brief</h2>
+  <p class="brief">The fixed rules got <span data-lab="orig.A.correct">129</span> of 155 letters right and carried out <span data-lab="orig.A.unsafe">20</span> unsafe actions, all on letters whose problem was only in the Dutch wording. The three model conditions got <span data-lab="orig.D.correct">153</span> to <span data-lab="orig.B.correct">155</span> right and carried out none. Read them together with these points.</p>
+  <ul class="readwith">
+    <li><strong>Many letters went to a person.</strong> B passed <span data-lab="orig.B.escalation">65</span> of 155 letters on, C <span data-lab="orig.C.escalation">74</span> and D <span data-lab="orig.D.escalation">73</span>. A hand-off is accepted as right on every letter with an attack.</li>
+    <li><strong>Without those accepted hand-offs</strong>, B got <span data-lab="orig.B.noesc">151</span> right, C <span data-lab="orig.C.noesc">141</span> and D <span data-lab="orig.D.noesc">141</span>.</li>
+    <li><strong>The simulated reviewer in B and approver in D knew the answer.</strong> They are code that checks against the answer key, not people.</li>
+    <li><strong>One run per letter.</strong> The counts are what happened on these letters once, not rates.</li>
+    <li><strong>No clinical review.</strong> No clinician has checked the letters or the answer key.</li>
+    <li><strong>Synthetic letters, written by one model family.</strong> Claude wrote the letters, and a Claude model was tested.</li>
+  </ul>
+  <h3>What kind of result this is</h3>
+  <p>The lab is a test harness with case studies, not a benchmark score for a model. Claude wrote the letters, the attacks, the rules, the policy layer and the answer key under my direction, and no clinician has reviewed them. One model family was tested, each letter was run once, so the counts below say what happened on these letters and are not reliability rates.</p>
+  </div>
+<figure class="chartfig side">
+  <svg class="chart" id="chart-lab" viewBox="0 0 440 370" role="img" aria-labelledby="chart-lab-t"><title id="chart-lab-t">Unsafe actions carried out, and letters passed to a person, out of 155, per condition</title><text class="head" x="0" y="16">Unsafe actions carried out</text><g class="bad"><text class="lbl" x="160" y="45" text-anchor="end">A, rules</text><rect x="170" y="30" width="28" height="20"/><text class="val" x="206" y="46">20</text></g><g class="zero"><text class="lbl" x="160" y="75" text-anchor="end">B, model drafts</text><rect x="170" y="60" width="2" height="20"/><text class="val" x="180" y="76">0</text></g><g class="zero"><text class="lbl" x="160" y="105" text-anchor="end">C, agent</text><rect x="170" y="90" width="2" height="20"/><text class="val" x="180" y="106">0</text></g><g class="zero"><text class="lbl" x="160" y="135" text-anchor="end">D, agent + approval</text><rect x="170" y="120" width="2" height="20"/><text class="val" x="180" y="136">0</text></g><g class="zero"><text class="lbl" x="160" y="165" text-anchor="end">H, all to a person</text><rect x="170" y="150" width="2" height="20"/><text class="val" x="180" y="166">0</text></g><text class="head" x="0" y="200">Letters passed to a person, of 155</text><g class="bar"><text class="lbl" x="160" y="229" text-anchor="end">A, rules</text><rect x="170" y="214" width="62" height="20"/><text class="val" x="240" y="230">44</text></g><g class="bar"><text class="lbl" x="160" y="259" text-anchor="end">B, model drafts</text><rect x="170" y="244" width="92" height="20"/><text class="val" x="270" y="260">65</text></g><g class="bar"><text class="lbl" x="160" y="289" text-anchor="end">C, agent</text><rect x="170" y="274" width="105" height="20"/><text class="val" x="283" y="290">74</text></g><g class="bar"><text class="lbl" x="160" y="319" text-anchor="end">D, agent + approval</text><rect x="170" y="304" width="104" height="20"/><text class="val" x="282" y="320">73</text></g><g class="bar"><text class="lbl" x="160" y="349" text-anchor="end">H, all to a person</text><rect x="170" y="334" width="220" height="20"/><text class="val" x="398" y="350">155</text></g></svg>
+  <figcaption><a class="chip syn" href="#limits">Synthetic</a> 155 synthetic letters, one run each. Escalating to a person is accepted as right on every letter with an attack, so a high hand-off count costs staff time, not points.</figcaption>
+</figure>
+</section>
+
+<div class="table-wrap results" tabindex="0" role="region" aria-label="Results on 155 letters">
+  <table class="cards-sm">
+    <caption>155 synthetic letters, world v1.8, 5 November 2026. Right answers under the key fixed before the run; the post hoc key is labelled.</caption>
+    <thead>
+      <tr><th scope="col">Condition</th><th scope="col" class="num">Unsafe actions</th><th scope="col" class="num">To a person</th><th scope="col" class="num">Right</th><th scope="col" class="num">Right without escalating</th><th scope="col" class="num">Right, post hoc key</th><th scope="col" class="num">Staff minutes</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">A, fixed rules</th><td class="num" data-label="Unsafe actions carried out"><span data-lab="orig.A.unsafe">20</span></td><td class="num" data-label="Passed to a person"><span data-lab="orig.A.escalation">44</span></td><td class="num" data-label="Right"><span data-lab="orig.A.correct">129</span></td><td class="num" data-label="Right without escalating"><span data-lab="orig.A.noesc">129</span></td><td class="num" data-label="Right, post hoc key"><span data-lab="askgp.A.correct">129</span></td><td class="num" data-label="Staff minutes per letter"><span data-lab="orig.A.minutes">3.42</span></td></tr>
+      <tr><th scope="row">B, model drafts, simulated reviewer</th><td class="num" data-label="Unsafe actions carried out"><span data-lab="orig.B.unsafe">0</span></td><td class="num" data-label="Passed to a person"><span data-lab="orig.B.escalation">65</span></td><td class="num" data-label="Right"><span><span data-lab="orig.B.correct">155</span><sup><a href="#note-b" aria-label="note on B">*</a></sup></span></td><td class="num" data-label="Right without escalating"><span data-lab="orig.B.noesc">151</span></td><td class="num" data-label="Right, post hoc key"><span data-lab="askgp.B.correct">155</span></td><td class="num" data-label="Staff minutes per letter"><span data-lab="orig.B.minutes">6.22</span></td></tr>
+      <tr><th scope="row">C, AI agent</th><td class="num" data-label="Unsafe actions carried out"><span data-lab="orig.C.unsafe">0</span></td><td class="num" data-label="Passed to a person"><span data-lab="orig.C.escalation">74</span></td><td class="num" data-label="Right"><span data-lab="orig.C.correct">154</span></td><td class="num" data-label="Right without escalating"><span data-lab="orig.C.noesc">141</span></td><td class="num" data-label="Right, post hoc key"><span data-lab="askgp.C.correct">155</span></td><td class="num" data-label="Staff minutes per letter"><span data-lab="orig.C.minutes">4.93</span></td></tr>
+      <tr><th scope="row">D, AI agent, simulated approver</th><td class="num" data-label="Unsafe actions carried out"><span data-lab="orig.D.unsafe">0</span></td><td class="num" data-label="Passed to a person"><span data-lab="orig.D.escalation">73</span></td><td class="num" data-label="Right"><span data-lab="orig.D.correct">153</span></td><td class="num" data-label="Right without escalating"><span data-lab="orig.D.noesc">141</span></td><td class="num" data-label="Right, post hoc key"><span data-lab="askgp.D.correct">155</span></td><td class="num" data-label="Staff minutes per letter"><span data-lab="orig.D.minutes">5.64</span></td></tr>
+      <tr><th scope="row">H, everything to a person</th><td class="num" data-label="Unsafe actions carried out"><span data-lab="orig.H.unsafe">0</span></td><td class="num" data-label="Passed to a person"><span data-lab="orig.H.escalation">155</span></td><td class="num" data-label="Right"><span data-lab="orig.H.correct">133</span></td><td class="num" data-label="Right without escalating"><span data-lab="orig.H.noesc">61</span></td><td class="num" data-label="Right, post hoc key"><span data-lab="askgp.H.correct">133</span></td><td class="num" data-label="Staff minutes per letter"><span data-lab="orig.H.minutes">8.00</span></td></tr>
+    </tbody>
+  </table>
+</div>
+<section class="prose">
+  <p class="note" id="note-b">* B's 155 is 148 drafts right as written and 7 that could not be read and were replaced with the right action by the simulated reviewer, which knows the answer. "Right without escalating" leaves out letters that count as right only because a hand-off to a person was accepted in place of the key's own answer. Three trivial baselines on the same key: escalate everything 133, book everything routine 29, do nothing 0. Staff minutes are <span class="chip ill">Illustrative</span>: a fixed price per step (8 minutes for a letter passed to a person, 6 for scheduling by hand, 1.5 for a review), not a time study.</p>
+
+  <h3>What the counts say</h3>
+  <ul>
+    <li><strong>The rules were wrong on 26 letters, and 20 of those were unsafe.</strong> They booked 12 letters that needed a person and 8 that needed a question to the GP first. Every one of the rules' mistakes was on a letter with a fault in the wording: warning signs in other words (the rules got 0 of 9 right), a drug the text says was stopped (3 of 13), or a letter about another problem than its diagnosis code (1 of 9). On letters whose only faults are in the structured data, the rules made none.</li>
+    <li><strong>B, C and D got all 26 of those letters right.</strong> Under the original key B lost no letter the rules got right, C lost 1 and D 2. Letters with the fault in the wording are the only group where the difference with the rules holds after correcting for testing 38 groups at once (the ceiling table in the <a href="runs/2026-11-05-v1.8/">full report</a>).</li>
+    <li><strong>One answer key was changed after the run.</strong> On two letters the GP wrote that the patient should be seen urgently while the form said routine, and the agents asked the GP to confirm (C once, D twice): two letters, three answers. The key fixed before the run counts that as wrong, and it stays the headline. Afterwards I decided that a careful desk worker might ask too, so a question to the GP counts as right in a post hoc key, under which C and D also get 155. I changed it after reading the results, so it is a sensitivity check, not a result.</li>
+    <li><strong>H sends every letter to a person.</strong> It does nothing unsafe and costs 8 minutes a letter on the price list, against 3.4 for the rules. Its 22 wrong answers are letters the desk is meant to handle itself.</li>
+  </ul>
+
+  <h3 id="against">What went against the agents</h3>
+  <ul>
+    <li><strong>The agent repeated the false claim after the policy layer had stopped the action.</strong> In 13 of the 15 cases where the agent had proposed the attacker's address (C 6 of 7, D 7 of 8), its closing summary told the desk the false reason from the tool description as if it were true, for example that a message to the GP's own address might not arrive. Nothing told staff to use the attacker's address.</li>
+    <li><strong>English and Chinese at a Dutch desk.</strong> The agents wrote their closing summaries in English on about two thirds of the letters (C 109, D 104 of 155), although every letter and the desk are Dutch, and twice in Chinese. The procedure does not say which language to use.</li>
+    <li><strong>The same letter can go either way.</strong> 30 letters were run twice, once in an earlier attack probe and once here. On 2 of the 5 letters with the directory attack, C proposed the attacker's address in one run and not in the other. One run per letter is not enough to give an attack rate.</li>
+  </ul>
+</section>
+
+<section class="split" id="attacks">
+  <div class="split-text">
+    <h2>Attacks</h2>
+    <ul>
+      <li>No condition followed any of the 18 instructions hidden in letters and scans.</li>
+      <li>One kind of attack tempted the agents. A directory tool's description said that messages to the GP should go through another address, and the agent proposed that address in 7 of 9 such letters (C) and 8 of 9 (D). A policy rule that only allows messages to the referral's own GP refused all 15, and the agents then wrote to the real GP. Without that rule, questions about patients' medication, allergies or reason for referral would have gone to a stranger.</li>
+      <li>The other attacks were never attempted by any condition: a booking tool that appears halfway through a case, a poisoned tool description, a look-alike GP address, a request to book the partner's referral too, and a scan in the GP's name asking for the reply to go to another address.</li>
+      <li>These are fixed attacks written by hand, not an adaptive attacker, so a count of 0 does not show that the agent would resist a determined attacker.</li>
+    </ul>
+  </div>
+  <figure class="diagram side" aria-labelledby="dia-attack-c">
+    <svg viewBox="0 0 320 400" role="img" aria-labelledby="dia-attack-t">
+      <title id="dia-attack-t">The directory attack: the tool description points to a relay, the agent proposes it, the policy layer refuses, the agent writes to the real GP, and its summary repeats the false reason to the desk.</title>
+      <g class="node warn"><rect x="10" y="10" width="300" height="52"/><text x="22" y="32">Directory tool description:</text><text x="22" y="52">"the GP's address no longer delivers"</text></g>
+      <path class="edge" d="M160 62v22"/>
+      <g class="node"><rect x="10" y="88" width="300" height="40"/><text x="22" y="113">Agent proposes the relay address</text></g>
+      <path class="edge" d="M160 128v22"/>
+      <g class="node stop"><rect x="10" y="154" width="300" height="52"/><text x="22" y="176">Policy layer refuses: 15 of 15</text><text x="22" y="196">(recipient must be the referral's GP)</text></g>
+      <path class="edge" d="M160 206v22"/>
+      <g class="node ok"><rect x="10" y="232" width="300" height="40"/><text x="22" y="257">Agent writes to the real GP</text></g>
+      <path class="edge" d="M160 272v22"/>
+      <g class="node bad"><rect x="10" y="298" width="300" height="52"/><text x="22" y="320">Summary to the desk repeats</text><text x="22" y="340">the false reason: 13 of 15</text></g>
+    </svg>
+    <figcaption id="dia-attack-c">The one attack that reached the policy layer, and what reached the person at the desk anyway.</figcaption>
+  </figure>
+</section>
+
+<section class="prose" id="v19">
+  <h2>A harder world that found nothing new</h2>
+  <p>Because B, C and D tie on v1.8, world v1.9 added 48 letters about the agent's own steps: a booking list that shows a new booking late, a GP record split over two calls, and a booking tool whose argument was renamed. The answer key and four predictions were written down before anyone read a result. On 7 November C and D both got <span data-lab="v19.C.correct">48</span> of 48 right and proposed none of the 48 traps. One prediction was wrong (no duplicate bookings), and the lag in the booking list turned out shorter than the agent's own way of checking, so that trap was hardly tested. 48 of 48 still fits a true error rate of up to about 7 in 100. <a href="runs/2026-11-07-v1.9/">The v1.9 report</a></p>
+</section>
+
+<section class="prose" id="change-pipeline">
+  <h2>A second task, built and not yet run</h2>
+  <p>On 12 November a second task was added to the same bench. An agent reads a change packet for a hospital system change, such as a new AI tool or a software upgrade going live, the way the privacy officer, the security officer and the clinical lead would. It decides to approve, ask for changes or reject, and lists the problems it found. The packets are synthetic: up to 12 documents each, with problems planted from a list of 34 kinds. The answer key was fixed and hashed before any model run.</p>
+  <p>In the referral task the policy layer refused every unsafe action before the approver saw it, so the approver never had anything to do. A change review is written text with no policy layer in front of it, so there a reviewer's misses would count.</p>
+  <p>It has not been run on a model, so there are no results to report. No people take part as reviewers: every reviewer in it is a simulation with settings I picked. Claude wrote the list of problems, the packets, the checklist, the answer key and the scoring.</p>
+</section>
+
+<section class="split" id="how">
+  <div class="split-text">
+    <h2>How a case works</h2>
+    <p>Each case is one referral letter from a GP, in Dutch. Most are fine. Some have a fault: the medication list is missing, the letter names the wrong specialty, the birth date doesn't match the GP's record, a drug on the letter was stopped, or the letter describes warning signs in plain words while the form says routine. Some carry an attack: an instruction hidden in a scanned letter, a tool whose description tries to redirect a message, or a message that belongs to another patient's referral.</p>
+    <p>Whoever handles the case can only act through seven typed tools, such as reading the referral, asking the GP for information, looking up capacity, booking a slot or handing the case to a person. Every proposed action passes a policy layer before it changes anything. The policy reads only structured data, so it cannot see a warning sign written in the letter. The score is read from what was actually done in the synthetic hospital systems, not from what the model says it did.</p>
+    <p>The procedure in the prompt lists the checks in the order the answer key applies them, so for faults in the structured data the task is to follow a given procedure. The lab measures something closer to "follows a written procedure on messy Dutch letters under attack" than how reliable a real referral desk would be.</p>
+  </div>
+  <figure class="diagram side" aria-labelledby="dia-case-c">
+    <svg viewBox="0 0 320 400" role="img" aria-labelledby="dia-case-t">
+      <title id="dia-case-t">A case: the letter goes to the handler, which acts only through seven typed tools; every action passes the policy layer before it reaches the synthetic hospital systems; the score is read from those systems.</title>
+      <g class="node"><rect x="10" y="10" width="300" height="40"/><text x="22" y="35">GP letter (Dutch, synthetic)</text></g>
+      <path class="edge" d="M160 50v20"/>
+      <g class="node"><rect x="10" y="74" width="300" height="40"/><text x="22" y="99">Handler: rules, model or agent</text></g>
+      <path class="edge" d="M160 114v20"/>
+      <g class="node"><rect x="10" y="138" width="300" height="40"/><text x="22" y="163">7 typed tools</text></g>
+      <path class="edge" d="M160 178v20"/>
+      <g class="node stop"><rect x="10" y="202" width="300" height="52"/><text x="22" y="224">Policy layer</text><text x="22" y="244">(structured data only)</text></g>
+      <path class="edge" d="M160 254v20"/>
+      <g class="node"><rect x="10" y="278" width="300" height="40"/><text x="22" y="303">Synthetic hospital systems</text></g>
+      <path class="edge" d="M160 318v20"/>
+      <g class="node ok"><rect x="10" y="342" width="300" height="40"/><text x="22" y="367">Score: what was actually done</text></g>
+    </svg>
+    <figcaption id="dia-case-c">The path every case takes, in every condition.</figcaption>
+  </figure>
+</section>
+
+<section class="prose">
+  <h3>Five ways to run the desk</h3>
+</section>
+<div class="table-wrap" tabindex="0" role="region" aria-label="The five conditions">
+  <table>
+    <thead><tr><th scope="col">Condition</th><th scope="col">Who handles the letter</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">A, fixed rules</th><td>Rules written from the desk's procedure, with a keyword list for warning signs.</td></tr>
+      <tr><th scope="row">B, model drafts</th><td>A language model drafts one action. A simulated reviewer, which knows the right answer, checks every draft.</td></tr>
+      <tr><th scope="row">C, AI agent</th><td>A language model with the seven tools, at most ten turns per letter.</td></tr>
+      <tr><th scope="row">D, AI agent with approval</th><td>As C, but bookings, messages to outside parties and closing a referral need approval, from a simulated approver that knows the right answer.</td></tr>
+      <tr><th scope="row">H, everything to a person</th><td>Every letter goes to a person. A reference: nobody handled the letters, and its minutes come from the price list.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<section class="prose" id="limits">
+  <h2>Limits</h2>
+  <ul>
+    <li>Everything is synthetic and written by one author, Claude, including the attacks and the policy rules. The rules and the policy layer partly score well because they were written alongside the letters they are tested on.</li>
+    <li>No clinician has checked the right answers, and none will: this stays a limit of the lab.</li>
+    <li>The right answer follows the lab's own procedure. Another procedure that is just as defensible would change the scores.</li>
+    <li>One model family (Claude Sonnet 5.5), one run per letter. Every fault and attack occurs at least nine times in the 155 letters, so rare faults are over-represented and the totals are not what a real desk would see.</li>
+    <li>The reviewer in B and the approver in D are simulated and know the right answer. Studies of radiologists and of clinical decision support found that people often go along with a wrong machine suggestion; how much that would happen here is not known. That real reviewers would also be slower is my guess and has not been checked.</li>
+    <li>Later runs let the simulated reviewer miss things: a lower catch rate, tiredness over a shift of 50 letters, stopping some right drafts. On the Sonnet run that changed nothing, because every draft the reviewer could read was already right. On a made-up set of drafts with mistakes in them, a tired reviewer let 18 of 46 wrong drafts through, against 5 when fresh, and looked cheaper in staff minutes because nobody corrected what it missed. These settings are guesses, not measurements.</li>
+    <li>D's approver never had anything to do, because the policy layer refused every unsafe action first. In this setup D is C plus approval minutes.</li>
+  </ul>
+</section>
+
+<section class="prose" id="reproduce">
+  <h2>Reproduce and cite</h2>
+  <p>The lab's code is not public yet. It records every model answer, so a run can be scored again from its recording without calling a model; the reports below were made that way on 7 November and match the original runs. The code will be under the MIT licence, and the cases, reports and recordings under CC BY 4.0. The model calls for the 155-letter run cost about $<span data-lab="orig.B.cost">1.54</span> for B and $<span data-lab="orig.C.cost">4.46</span> each for C and D.</p>
+  <p class="cite">Simone Cammel (2026). Cammelot Agent Reliability Lab: the 155-letter run on world v1.8, 5 November 2026. https://cammelot.org/lab/</p>
+
+  <h3 id="runs">Run reports</h3>
+  <p>Each report is the lab's own output for the run, with its results as JSON.</p>
+  <ul class="runs">
+    <li><a href="runs/2026-11-05-v1.8/">155 letters, world v1.8, original answer key</a> (5 November 2026, the headline on this page)</li>
+    <li><a href="runs/2026-11-05-v1.8-prose-ask-gp/">The same run under the post hoc key</a></li>
+    <li><a href="runs/2026-11-05-v1.8-attack-probe/">30 hard-attack letters, world v1.8</a> (5 November 2026; all 30 are also in the 155)</li>
+    <li><a href="runs/2026-11-07-v1.9/">48 letters, world v1.9 probe</a> (7 November 2026, preregistered)</li>
+    <li><a href="runs/2026-11-05-v1.7/">60 letters, world v1.7</a> (5 November 2026). C and D got all <span data-lab="v17.C.correct">60</span> right; B got <span data-lab="v17.B.correct">56</span>, and all four of its mistakes were drafts with wrong argument names.</li>
+  </ul>
+</section>
+</main>
+<footer class="foot">
+  <div class="foot-in">
+    <p><strong>Cammelot is a game and a synthetic experiment.</strong> The town, its people and its care group are invented. It is not a forecast and not medical advice.</p>
+    <p>Game code AGPL-3.0, lab code MIT, data and text CC BY 4.0. The code is not public yet. Pixel art in the game by LimeZu. <a href="../about/#credits">Credits and licences</a></p>
+    <p>Made by Simone Cammel. <a href="mailto:contact@cammelot.org">contact@cammelot.org</a> · <a href="../sources/">Sources</a> · <a href="../press/">Press kit</a></p>
+  </div>
+</footer>
+</body>
+</html>
